@@ -1,0 +1,33 @@
+modLoader = "javafml"
+loaderVersion = "[46,)"
+issueTrackerURL = "https://github.com/MrMelon54/draggable/issues"
+license = "GPL-3.0-only"
+
+[[mods]]
+modId = "draggable"
+version = "${version}"
+displayName = "Draggable"
+authors = "MrMelon54"
+description = "Draggable resource packs, datapacks, servers and worlds"
+logoFile = "/icon.png"
+
+[[dependencies.draggable]]
+modId = "forge"
+mandatory = true
+versionRange = "[46,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.draggable]]
+modId = "minecraft"
+mandatory = true
+versionRange = "[1.20,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.draggable]]
+modId = "architectury"
+mandatory = true
+versionRange = "[9.0.0,)"
+ordering = "AFTER"
+side = "BOTH"

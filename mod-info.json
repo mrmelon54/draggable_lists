@@ -1,0 +1,10 @@
+{
+  "modid": "draggable",
+  "modname": "Draggable",
+  "modclass": "Draggable",
+  "modgroup": "com.mrmelon54.Draggable",
+  "moddesc": "Draggable resource packs, datapacks, servers and worlds",
+  "modwebsite": "https://mrmelon54.com/minecraft/draggable",
+  "modsource": "https://github.com/MrMelon54/draggable",
+  "modissue": "https://github.com/MrMelon54/draggable/issues"
+}

@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "mixin": [
+    "draggable.mixins.json",
+    "draggable-common.mixins.json"
+  ],
+  "quilt_loader": {
+    "group": "${group}",
+    "id": "draggable",
+    "version": "${version}",
+    "metadata": {
+      "name": "Draggable",
+      "description": "Draggable resource packs, datapacks, servers and worlds",
+      "contributors": {
+        "MrMelon54": "Owner"
+      },
+      "contact": {
+        "homepage": "https://mrmelon54.com/minecraft/draggable",
+        "sources": "https://github.com/MrMelon54/draggable",
+        "issues": "https://github.com/MrMelon54/draggable/issues"
+      },
+      "license": "GPL-3.0-only",
+      "icon": "icon.png"
+    },
+    "intermediate_mappings": "net.fabricmc:intermediary",
+    "entrypoints": {
+      "init": [
+        "com.mrmelon54.Draggable.quilt.DraggableQuilt"
+      ],
+      "modmenu": [
+        "com.mrmelon54.Draggable.fabriclike.ModMenuIntegration"
+      ]
+    },
+    "depends": [
+      {
+        "id": "quilt_loader",
+        "version": "*"
+      },
+      {
+        "id": "quilt_base",
+        "version": "*"
+      },
+      {
+        "id": "minecraft",
+        "version": ">=1.20"
+      },
+      {
+        "id": "architectury",
+        "version": ">=9.0.0"
+      }
+    ]
+  },
+  "minecraft": {
+    "environment": "*"
+  }
+}
