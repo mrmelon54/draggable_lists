@@ -1,10 +1,10 @@
 {
-  "modid": "draggable",
-  "modname": "Draggable",
-  "modclass": "Draggable",
-  "modgroup": "com.mrmelon54.Draggable",
+  "modid": "draggable_lists",
+  "modname": "Draggable Lists",
+  "modclass": "DraggableLists",
+  "modgroup": "com.mrmelon54.DraggableLists",
   "moddesc": "Draggable resource packs, datapacks, servers and worlds",
-  "modwebsite": "https://mrmelon54.com/minecraft/draggable",
-  "modsource": "https://github.com/MrMelon54/draggable",
-  "modissue": "https://github.com/MrMelon54/draggable/issues"
+  "modwebsite": "https://mrmelon54.com/minecraft/draggable-lists",
+  "modsource": "https://github.com/MrMelon54/draggable_lists",
+  "modissue": "https://github.com/MrMelon54/draggable_lists/issues"
 }
