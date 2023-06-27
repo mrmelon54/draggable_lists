@@ -4,8 +4,9 @@ import com.mrmelon54.Draggable.config.ConfigStructure;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.JanksonConfigSerializer;
 import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.client.gui.screens.packs.PackSelectionModel;
+import net.minecraft.server.packs.repository.Pack;
 
-import java.util.List;
 import java.util.function.Supplier;
 
 public class Draggable {
@@ -23,5 +24,13 @@ public class Draggable {
 
     public static Supplier<Screen> createConfigScreen(Screen screen) {
         return AutoConfig.getConfigScreen(ConfigStructure.class, screen);
+    }
+
+    public static boolean shouldNotTouch(Pack pack) {
+        return pack.isFixedPosition() || pack.isRequired() || pack.getId().equals("vanilla");
+    }
+
+    public static boolean shouldNotTouch(PackSelectionModel.Entry pack) {
+        return pack.isFixedPosition() || pack.isRequired() || pack.getId().equals("vanilla");
     }
 }
