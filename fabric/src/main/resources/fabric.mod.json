@@ -1,31 +1,31 @@
 {
   "schemaVersion": 1,
-  "id": "draggable",
+  "id": "draggable_lists",
   "version": "${version}",
-  "name": "Draggable",
+  "name": "Draggable Lists",
   "description": "Draggable resource packs, datapacks, servers and worlds",
   "authors": [
     "MrMelon54"
   ],
   "contact": {
-    "homepage": "https://mrmelon54.com/minecraft/draggable",
-    "sources": "https://github.com/MrMelon54/draggable",
-    "issues": "https://github.com/MrMelon54/draggable/issues"
+    "homepage": "https://mrmelon54.com/minecraft/draggable-lists",
+    "sources": "https://github.com/MrMelon54/draggable_lists",
+    "issues": "https://github.com/MrMelon54/draggable_lists/issues"
   },
   "license": "GPL-3.0-only",
   "icon": "icon.png",
   "environment": "*",
   "entrypoints": {
     "main": [
-      "com.mrmelon54.Draggable.fabric.DraggableFabric"
+      "com.mrmelon54.DraggableLists.fabric.DraggableListsFabric"
     ],
     "modmenu": [
-      "com.mrmelon54.Draggable.fabriclike.ModMenuIntegration"
+      "com.mrmelon54.DraggableLists.fabriclike.ModMenuIntegration"
     ]
   },
   "mixins": [
-    "draggable.mixins.json",
-    "draggable-common.mixins.json"
+    "draggable_lists.mixins.json",
+    "draggable_lists-common.mixins.json"
   ],
   "depends": {
     "fabric": "*",

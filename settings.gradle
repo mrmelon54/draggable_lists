@@ -13,4 +13,4 @@ include("fabric")
 include("quilt")
 include("forge")
 
-rootProject.name = "draggable"
+rootProject.name = "draggable_lists"

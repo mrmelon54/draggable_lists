@@ -14,8 +14,8 @@ loom {
         convertAccessWideners = true
         extraAccessWideners.add loom.accessWidenerPath.get().asFile.name
 
-        mixinConfig "draggable-common.mixins.json"
-        mixinConfig "draggable.mixins.json"
+        mixinConfig "draggable_lists-common.mixins.json"
+        mixinConfig "draggable_lists.mixins.json"
     }
 }
 

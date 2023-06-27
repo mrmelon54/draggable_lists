@@ -3,7 +3,7 @@ architectury {
 }
 
 loom {
-    accessWidenerPath = file("src/main/resources/draggable.accesswidener")
+    accessWidenerPath = file("src/main/resources/draggable_lists.accesswidener")
 }
 
 dependencies {

@@ -58,7 +58,7 @@ allprojects {
 }
 
 forgix {
-    group = "com.mrmelon54.Draggable"
+    group = "com.mrmelon54.DraggableLists"
     mergedJarName = "${project.archivesBaseName}-mc${project.minecraft_version}-${project.mod_version}-${getVersionMetadata()}.jar"
     outputDir = "build/libs/merged"
 }
