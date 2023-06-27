@@ -18,7 +18,7 @@ jobs:
         run: ./gradlew build
 
       - name: Compress
-        run: tar -czvf upload.tar.gz build/libs/*.jar
+        run: tar -czvf upload.tar.gz build/libs/merged/*.jar
 
       - name: Deploy
         if: startsWith(github.ref, 'refs/tags/v')
