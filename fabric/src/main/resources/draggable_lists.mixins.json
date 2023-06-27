@@ -1,4 +1,4 @@
-]{
+{
   "required": true,
   "package": "com.mrmelon54.DraggableLists.mixin.fabric",
   "compatibilityLevel": "JAVA_17",

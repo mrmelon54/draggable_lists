@@ -10,7 +10,7 @@
     "version": "${version}",
     "metadata": {
       "name": "Draggable Lists",
-      "description": "Draggable resource packs, datapacks, servers and worlds",
+      "description": "Draggable resource packs, datapacks and servers",
       "contributors": {
         "MrMelon54": "Owner"
       },

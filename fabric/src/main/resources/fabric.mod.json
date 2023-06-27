@@ -3,7 +3,7 @@
   "id": "draggable_lists",
   "version": "${version}",
   "name": "Draggable Lists",
-  "description": "Draggable resource packs, datapacks, servers and worlds",
+  "description": "Draggable resource packs, datapacks and servers",
   "authors": [
     "MrMelon54"
   ],

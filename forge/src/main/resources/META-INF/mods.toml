@@ -8,7 +8,7 @@ modId = "draggable_lists"
 version = "${version}"
 displayName = "Draggable Lists"
 authors = "MrMelon54"
-description = "Draggable resource packs, datapacks, servers and worlds"
+description = "Draggable resource packs, datapacks and servers"
 logoFile = "/icon.png"
 
 [[dependencies.draggable_lists]]

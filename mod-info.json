@@ -3,7 +3,7 @@
   "modname": "Draggable Lists",
   "modclass": "DraggableLists",
   "modgroup": "com.mrmelon54.DraggableLists",
-  "moddesc": "Draggable resource packs, datapacks, servers and worlds",
+  "moddesc": "Draggable resource packs, datapacks and servers",
   "modwebsite": "https://mrmelon54.com/minecraft/draggable-lists",
   "modsource": "https://github.com/MrMelon54/draggable_lists",
   "modissue": "https://github.com/MrMelon54/draggable_lists/issues"
