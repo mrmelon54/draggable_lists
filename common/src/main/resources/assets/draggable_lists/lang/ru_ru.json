@@ -1,0 +1,9 @@
+{
+  "text.autoconfig.draggable_lists.title": "Настройки Draggable Lists",
+  "text.autoconfig.draggable_lists.option.disableResourcePackArrows": "Убрать стрелки перемещения наборов ресурсов",
+  "text.autoconfig.draggable_lists.option.disableDatapackArrows": "Убрать стрелки перемещения наборов данных",
+  "text.autoconfig.draggable_lists.option.disableServerArrows": "Убрать стрелки перемещения серверов",
+  "text.autoconfig.draggable_lists.option.disableLevelArrows": "Убрать стрелки перемещения миров",
+  "modmenu.summaryTranslation.draggable_lists": "Перетаскивание миров, серверов, наборов ресурсов и данных.",
+  "modmenu.descriptionTranslation.draggable_lists": "Draggable Lists добавляет возможность перетаскивать миры, серверы и наборы ресурсов и данных, потому что... кто любит постоянно целиться по маленьким стрелочкам? Просто перетащите элемент в списке!"
+}
