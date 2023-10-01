@@ -38,28 +38,28 @@ public abstract class MixinTransferableSelectionList_PackEntry extends ObjectSel
             ci.cancel();
     }
 
-    @Redirect(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;blit(Lnet/minecraft/resources/ResourceLocation;IIFFIIII)V", ordinal = 5))
-    public void removeOnUpArrowButtons(GuiGraphics instance, ResourceLocation resourceLocation, int i, int j, float f, float g, int k, int l, int m, int n) {
+    @Redirect(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;blitSprite(Lnet/minecraft/resources/ResourceLocation;IIII)V", ordinal = 4))
+    public void removeOnUpArrowButtons(GuiGraphics instance, ResourceLocation resourceLocation, int i, int j, int k, int l) {
         if (DraggableLists.getConfig().disableResourcePackArrows) return;
-        instance.blit(resourceLocation, i, j, f, g, k, l, m, n);
+        instance.blitSprite(resourceLocation, i, j, k, l);
     }
 
-    @Redirect(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;blit(Lnet/minecraft/resources/ResourceLocation;IIFFIIII)V", ordinal = 6))
-    public void removeOffUpArrowButtons(GuiGraphics instance, ResourceLocation resourceLocation, int i, int j, float f, float g, int k, int l, int m, int n) {
+    @Redirect(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;blitSprite(Lnet/minecraft/resources/ResourceLocation;IIII)V", ordinal = 5))
+    public void removeOffUpArrowButtons(GuiGraphics instance, ResourceLocation resourceLocation, int i, int j, int k, int l) {
         if (DraggableLists.getConfig().disableResourcePackArrows) return;
-        instance.blit(resourceLocation, i, j, f, g, k, l, m, n);
+        instance.blitSprite(resourceLocation, i, j, k, l);
     }
 
-    @Redirect(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;blit(Lnet/minecraft/resources/ResourceLocation;IIFFIIII)V", ordinal = 7))
-    public void removeOnDownArrowButtons(GuiGraphics instance, ResourceLocation resourceLocation, int i, int j, float f, float g, int k, int l, int m, int n) {
+    @Redirect(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;blitSprite(Lnet/minecraft/resources/ResourceLocation;IIII)V", ordinal = 6))
+    public void removeOnDownArrowButtons(GuiGraphics instance, ResourceLocation resourceLocation, int i, int j, int k, int l) {
         if (DraggableLists.getConfig().disableResourcePackArrows) return;
-        instance.blit(resourceLocation, i, j, f, g, k, l, m, n);
+        instance.blitSprite(resourceLocation, i, j, k, l);
     }
 
-    @Redirect(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;blit(Lnet/minecraft/resources/ResourceLocation;IIFFIIII)V", ordinal = 8))
-    public void removeOffDownArrowButtons(GuiGraphics instance, ResourceLocation resourceLocation, int i, int j, float f, float g, int k, int l, int m, int n) {
+    @Redirect(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;blitSprite(Lnet/minecraft/resources/ResourceLocation;IIII)V", ordinal = 7))
+    public void removeOffDownArrowButtons(GuiGraphics instance, ResourceLocation resourceLocation, int i, int j, int k, int l) {
         if (DraggableLists.getConfig().disableResourcePackArrows) return;
-        instance.blit(resourceLocation, i, j, f, g, k, l, m, n);
+        instance.blitSprite(resourceLocation, i, j, k, l);
     }
 
     @Inject(method = "mouseClicked", at = @At("HEAD"), cancellable = true)

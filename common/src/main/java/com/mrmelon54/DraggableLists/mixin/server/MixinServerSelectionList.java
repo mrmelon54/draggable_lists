@@ -100,9 +100,9 @@ public abstract class MixinServerSelectionList extends ObjectSelectionList<Serve
     }
 
     @Override
-    public boolean mouseScrolled(double mouseX, double mouseY, double amount) {
+    public boolean mouseScrolled(double mouseX, double mouseY, double horizontalAmount, double verticalAmount) {
         if (draggingObject != null) return true;
-        return super.mouseScrolled(mouseX, mouseY, amount);
+        return super.mouseScrolled(mouseX, mouseY, horizontalAmount, verticalAmount);
     }
 
     boolean updateDragEvent(double mouseX, double mouseY) {
