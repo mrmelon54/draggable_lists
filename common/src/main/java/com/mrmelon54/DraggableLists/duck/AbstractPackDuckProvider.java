@@ -1,7 +1,7 @@
 package com.mrmelon54.DraggableLists.duck;
 
 public interface AbstractPackDuckProvider {
-    void moveTo(int j);
+    void draggable_lists$moveTo(int j);
 
-    int getIndexInSelectedList();
+    int draggable_lists$getIndexInSelectedList();
 }

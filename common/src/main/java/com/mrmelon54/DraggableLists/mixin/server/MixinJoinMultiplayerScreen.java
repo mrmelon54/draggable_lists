@@ -43,7 +43,7 @@ public abstract class MixinJoinMultiplayerScreen extends Screen implements Multi
     }
 
     @Override
-    public int getIndexOfServerInfo(ServerData serverData) {
+    public int draggable_lists$getIndexOfServerInfo(ServerData serverData) {
         ServerList servers = getServers();
         for (int i = 0; i < servers.size(); i++)
             if (servers.get(i) == serverData) return i;

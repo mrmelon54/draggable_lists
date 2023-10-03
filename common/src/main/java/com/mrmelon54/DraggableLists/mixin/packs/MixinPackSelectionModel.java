@@ -13,7 +13,7 @@ public abstract class MixinPackSelectionModel implements ResourcePackOrganizerDu
     Runnable onListChanged;
 
     @Override
-    public void updateSelectedList() {
+    public void draggable_lists$updateSelectedList() {
         onListChanged.run();
     }
 }

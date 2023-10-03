@@ -16,7 +16,7 @@ public class MixinServerList implements ServerListDuckProvider {
     private List<ServerData> serverList;
 
     @Override
-    public void add(int index, ServerData serverData) {
+    public void draggable_lists$add(int index, ServerData serverData) {
         serverList.add(index, serverData);
     }
 }

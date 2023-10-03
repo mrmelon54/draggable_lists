@@ -11,6 +11,7 @@ import net.minecraft.resources.ResourceLocation;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
@@ -25,16 +26,17 @@ public abstract class MixinTransferableSelectionList_PackEntry extends ObjectSel
     @Shadow
     @Final
     private TransferableSelectionList parent;
-    private boolean isBeingDragged = false;
+    @Unique
+    private boolean draggable_lists$isBeingDragged = false;
 
     @Override
-    public PackSelectionModel.Entry getUnderlyingPack() {
+    public PackSelectionModel.Entry draggable_lists$getUnderlyingPack() {
         return pack;
     }
 
     @Inject(method = "render", at = @At("HEAD"), cancellable = true)
     public void render(GuiGraphics guiGraphics, int i, int j, int k, int l, int m, int n, int o, boolean bl, float f, CallbackInfo ci) {
-        if (isBeingDragged)
+        if (draggable_lists$isBeingDragged)
             ci.cancel();
     }
 
@@ -75,10 +77,10 @@ public abstract class MixinTransferableSelectionList_PackEntry extends ObjectSel
     }
 
     @Override
-    public void renderPoppedOut(GuiGraphics guiGraphics, int index, int y, int x, int entryWidth, int entryHeight, int mouseX, int mouseY, boolean hovered, float tickDelta) {
-        if (!isBeingDragged) return;
+    public void draggable_lists$renderPoppedOut(GuiGraphics guiGraphics, int index, int y, int x, int entryWidth, int entryHeight, int mouseX, int mouseY, boolean hovered, float tickDelta) {
+        if (!draggable_lists$isBeingDragged) return;
 
-        isBeingDragged = false;
+        draggable_lists$isBeingDragged = false;
         guiGraphics.pose().pushPose();
 
         float z = 191f / 255f;
@@ -87,11 +89,11 @@ public abstract class MixinTransferableSelectionList_PackEntry extends ObjectSel
         render(guiGraphics, index, y, x, entryWidth, entryHeight, mouseX, mouseY, hovered, tickDelta);
         RenderSystem.setShaderColor(1, 1, 1, 1);
         guiGraphics.pose().popPose();
-        isBeingDragged = true;
+        draggable_lists$isBeingDragged = true;
     }
 
     @Override
-    public void setBeingDragged(boolean v) {
-        isBeingDragged = v;
+    public void draggable_lists$setBeingDragged(boolean v) {
+        draggable_lists$isBeingDragged = v;
     }
 }

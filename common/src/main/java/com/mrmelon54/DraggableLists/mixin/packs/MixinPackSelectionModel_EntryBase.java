@@ -28,7 +28,7 @@ public abstract class MixinPackSelectionModel_EntryBase implements AbstractPackD
     private PackSelectionModel field_25460;
 
     @Override
-    public void moveTo(int j) {
+    public void draggable_lists$moveTo(int j) {
         if (DraggableLists.shouldNotTouch(pack)) return;
 
         List<Pack> list = getSelfList();
@@ -42,11 +42,11 @@ public abstract class MixinPackSelectionModel_EntryBase implements AbstractPackD
         list.addAll(list1);
 
         if (field_25460 instanceof ResourcePackOrganizerDuckProvider duckProvider)
-            duckProvider.updateSelectedList();
+            duckProvider.draggable_lists$updateSelectedList();
     }
 
     @Override
-    public int getIndexInSelectedList() {
+    public int draggable_lists$getIndexInSelectedList() {
         return getSelfList().indexOf(pack);
     }
 }
