@@ -42,7 +42,7 @@
       },
       {
         "id": "minecraft",
-        "version": ">=1.20"
+        "version": "1.20.x"
       },
       {
         "id": "architectury",
@@ -51,6 +51,6 @@
     ]
   },
   "minecraft": {
-    "environment": "*"
+    "environment": "client"
   }
 }
