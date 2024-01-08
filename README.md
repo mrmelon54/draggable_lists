@@ -2,8 +2,6 @@
 
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/W7W1607S8)
 
-Requires the [Fabric Loader](https://fabricmc.net/use/) and [Fabric API](https://modrinth.com/mod/fabric-api)
-
 Logo made by [@CarbonGhost](https://github.com/CarbonGhost)
 
 ## Setup

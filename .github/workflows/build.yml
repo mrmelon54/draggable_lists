@@ -17,9 +17,6 @@ jobs:
       - name: Build
         run: ./gradlew build
 
-      - name: Compress
-        run: tar -czvf upload.tar.gz build/libs/merged/*.jar
-
       - name: Deploy
         if: startsWith(github.ref, 'refs/tags/v')
-        run: 'curl -X POST -H "Authorization: Bearer ${{ secrets.DEPLOY }}" -F "upload=@upload.tar.gz" https://b.mrmelon54.xyz/u/mc-mod/draggable-lists'
+        run: 'curl --fail -X POST -H "Authorization: Bearer ${{ secrets.DEPLOY }}" -F "upload=@$(ls -1 build/libs/merged/*.jar)" https://api.mrmelon54.com/v1/mc-upload/upload/draggable-lists'
