@@ -1,8 +1,7 @@
 plugins {
+    id "com.github.johnrengelman.shadow" version "8.1.1" apply false
     id "architectury-plugin" version "3.4-SNAPSHOT"
-    id "dev.architectury.loom" version "1.1-SNAPSHOT" apply false
-    id "io.github.pacifistmc.forgix" version "1.2.6"
-    id "org.ajoberstar.grgit" version "4.1.0"
+    id "dev.architectury.loom" version "1.4-SNAPSHOT" apply false
 }
 
 architectury {
@@ -20,12 +19,7 @@ subprojects {
         minecraft "com.mojang:minecraft:${rootProject.minecraft_version}"
         // The following line declares the mojmap mappings, you may use other mappings as well
         mappings loom.officialMojangMappings()
-        // The following line declares the yarn mappings you may select this one as well.
-        // mappings "net.fabricmc:yarn:1.19.4+build.2:v2"
     }
-
-    build.finalizedBy(mergeJars)
-    assemble.finalizedBy(mergeJars)
 }
 
 allprojects {
@@ -34,55 +28,27 @@ allprojects {
     apply plugin: "maven-publish"
 
     archivesBaseName = rootProject.archives_base_name
-    version = rootProject.mod_version
+    version = "${rootProject.mod_version}+mc${rootProject.minecraft_version}-${project.name}"
     group = rootProject.maven_group
 
     repositories {
-        // Add repositories to retrieve artifacts from in here.
-        // You should only use this when depending on other mods because
-        // Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
-        // See https://docs.gradle.org/current/userguide/declaring_repositories.html
-        // for more information about repositories.
-        maven { url "https://maven.shedaniel.me/" }
-        maven { url "https://maven.terraformersmc.com/releases/" }
+        maven { url "https://maven.shedaniel.me" }
+        maven { url "https://maven.neoforged.net/releases" }
+        maven { url "https://maven.terraformersmc.com/releases" }
     }
 
-    tasks.withType(JavaCompile) {
+    tasks.withType(JavaCompile).configureEach {
         options.encoding = "UTF-8"
-        options.release = 17
+        options.release.set 17
     }
 
     java {
         withSourcesJar()
     }
-}
 
-forgix {
-    group = "com.mrmelon54.DraggableLists"
-    mergedJarName = "${project.archivesBaseName}-mc${project.minecraft_version}-${project.mod_version}-${getVersionMetadata()}.jar"
-    outputDir = "build/libs/merged"
-}
-
-def getVersionMetadata() {
-    def build_id = System.getenv("GITHUB_RUN_NUMBER")
-
-    // CI builds only
-    if (build_id != null) {
-        return "build.${build_id}"
-    }
-
-    if (grgit != null) {
-        def head = grgit.head()
-        def id = head.abbreviatedId
-
-        // Flag the build if the build tree is not clean
-        if (!grgit.status().clean) {
-            id += "-dirty"
+    publishing {
+        repositories {
+            // Add repositories to publish to here.
         }
-
-        return "rev.${id}"
     }
-
-    // No tracking information could be found about the build
-    return "unknown"
 }

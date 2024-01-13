@@ -16,7 +16,7 @@
   "icon": "icon.png",
   "environment": "client",
   "entrypoints": {
-    "main": [
+    "client": [
       "com.mrmelon54.DraggableLists.fabric.DraggableListsFabric"
     ],
     "modmenu": [
@@ -24,12 +24,10 @@
     ]
   },
   "mixins": [
-    "draggable_lists.mixins.json",
-    "draggable_lists-common.mixins.json"
+    "draggable_lists.mixins.json"
   ],
   "depends": {
     "fabric": "*",
-    "minecraft": "1.20.x",
-    "architectury": ">=9.0.0"
+    "minecraft": ">=1.20.4"
   }
 }

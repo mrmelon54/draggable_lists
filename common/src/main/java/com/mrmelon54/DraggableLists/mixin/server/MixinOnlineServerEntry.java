@@ -70,25 +70,25 @@ public abstract class MixinOnlineServerEntry extends ObjectSelectionList.Entry<S
 
     @Redirect(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;blitSprite(Lnet/minecraft/resources/ResourceLocation;IIII)V", ordinal = 3))
     public void removeUpOnButton(GuiGraphics instance, ResourceLocation resourceLocation, int i, int j, int k, int l) {
-        if (DraggableLists.getConfig().disableServerArrows) return;
+        if (DraggableLists.CONFIG.disableServerArrows) return;
         instance.blitSprite(resourceLocation, i, j, k, l);
     }
 
     @Redirect(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;blitSprite(Lnet/minecraft/resources/ResourceLocation;IIII)V", ordinal = 4))
     public void removeUpButton(GuiGraphics instance, ResourceLocation resourceLocation, int i, int j, int k, int l) {
-        if (DraggableLists.getConfig().disableServerArrows) return;
+        if (DraggableLists.CONFIG.disableServerArrows) return;
         instance.blitSprite(resourceLocation, i, j, k, l);
     }
 
     @Redirect(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;blitSprite(Lnet/minecraft/resources/ResourceLocation;IIII)V", ordinal = 5))
     public void removeDownOnButton(GuiGraphics instance, ResourceLocation resourceLocation, int i, int j, int k, int l) {
-        if (DraggableLists.getConfig().disableServerArrows) return;
+        if (DraggableLists.CONFIG.disableServerArrows) return;
         instance.blitSprite(resourceLocation, i, j, k, l);
     }
 
     @Redirect(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;blitSprite(Lnet/minecraft/resources/ResourceLocation;IIII)V", ordinal = 6))
     public void removeDownButton(GuiGraphics instance, ResourceLocation resourceLocation, int i, int j, int k, int l) {
-        if (DraggableLists.getConfig().disableServerArrows) return;
+        if (DraggableLists.CONFIG.disableServerArrows) return;
         instance.blitSprite(resourceLocation, i, j, k, l);
     }
 

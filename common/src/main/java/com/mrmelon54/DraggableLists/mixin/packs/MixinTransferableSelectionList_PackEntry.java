@@ -42,31 +42,31 @@ public abstract class MixinTransferableSelectionList_PackEntry extends ObjectSel
 
     @Redirect(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;blitSprite(Lnet/minecraft/resources/ResourceLocation;IIII)V", ordinal = 4))
     public void removeOnUpArrowButtons(GuiGraphics instance, ResourceLocation resourceLocation, int i, int j, int k, int l) {
-        if (DraggableLists.getConfig().disableResourcePackArrows) return;
+        if (DraggableLists.CONFIG.disableResourcePackArrows) return;
         instance.blitSprite(resourceLocation, i, j, k, l);
     }
 
     @Redirect(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;blitSprite(Lnet/minecraft/resources/ResourceLocation;IIII)V", ordinal = 5))
     public void removeOffUpArrowButtons(GuiGraphics instance, ResourceLocation resourceLocation, int i, int j, int k, int l) {
-        if (DraggableLists.getConfig().disableResourcePackArrows) return;
+        if (DraggableLists.CONFIG.disableResourcePackArrows) return;
         instance.blitSprite(resourceLocation, i, j, k, l);
     }
 
     @Redirect(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;blitSprite(Lnet/minecraft/resources/ResourceLocation;IIII)V", ordinal = 6))
     public void removeOnDownArrowButtons(GuiGraphics instance, ResourceLocation resourceLocation, int i, int j, int k, int l) {
-        if (DraggableLists.getConfig().disableResourcePackArrows) return;
+        if (DraggableLists.CONFIG.disableResourcePackArrows) return;
         instance.blitSprite(resourceLocation, i, j, k, l);
     }
 
     @Redirect(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;blitSprite(Lnet/minecraft/resources/ResourceLocation;IIII)V", ordinal = 7))
     public void removeOffDownArrowButtons(GuiGraphics instance, ResourceLocation resourceLocation, int i, int j, int k, int l) {
-        if (DraggableLists.getConfig().disableResourcePackArrows) return;
+        if (DraggableLists.CONFIG.disableResourcePackArrows) return;
         instance.blitSprite(resourceLocation, i, j, k, l);
     }
 
     @Inject(method = "mouseClicked", at = @At("HEAD"), cancellable = true)
     public void removeMoveTowardEnd(double d, double e, int i, CallbackInfoReturnable<Boolean> cir) {
-        if (!DraggableLists.getConfig().disableResourcePackArrows) return;
+        if (!DraggableLists.CONFIG.disableResourcePackArrows) return;
         if (d > getRectangle().width() / 2f) return;
 
         double f = d - (double) parent.getRowLeft();

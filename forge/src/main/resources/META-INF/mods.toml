@@ -1,5 +1,5 @@
 modLoader = "javafml"
-loaderVersion = "[46,)"
+loaderVersion = "*"
 issueTrackerURL = "https://github.com/MrMelon54/draggable_lists/issues"
 license = "GPL-3.0-only"
 
@@ -9,25 +9,14 @@ version = "${version}"
 displayName = "Draggable Lists"
 authors = "MrMelon54"
 description = "Draggable resource packs, datapacks and servers"
-logoFile = "/icon.png"
+logoFile = "icon.png"
 
-[[dependencies.draggable_lists]]
-modId = "forge"
-mandatory = true
-versionRange = "[46,)"
-ordering = "NONE"
-side = "BOTH"
+[[mixins]]
+config = "draggable_lists.mixins.json"
 
 [[dependencies.draggable_lists]]
 modId = "minecraft"
-mandatory = true
-versionRange = "[1.20,)"
+type = "required"
+versionRange = "[1.20.4,)"
 ordering = "NONE"
-side = "BOTH"
-
-[[dependencies.draggable_lists]]
-modId = "architectury"
-mandatory = true
-versionRange = "[9.0.0,)"
-ordering = "AFTER"
 side = "BOTH"

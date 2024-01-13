@@ -1,11 +1,7 @@
 package com.mrmelon54.DraggableLists.fabric;
 
-import com.mrmelon54.DraggableLists.fabriclike.DraggableListsFabricLike;
-import net.fabricmc.api.ModInitializer;
+import com.mrmelon54.DraggableLists.DraggableLists;
+import net.fabricmc.api.ClientModInitializer;
 
-public class DraggableListsFabric implements ModInitializer {
-    @Override
-    public void onInitialize() {
-        DraggableListsFabricLike.init();
-    }
+public class DraggableListsFabric extends DraggableLists implements ClientModInitializer { // Yea
 }
