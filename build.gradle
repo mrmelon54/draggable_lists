@@ -20,6 +20,9 @@ subprojects {
         // The following line declares the mojmap mappings, you may use other mappings as well
         mappings loom.officialMojangMappings()
     }
+
+    build.finalizedBy(mergeJars)
+    assemble.finalizedBy(mergeJars)
 }
 
 allprojects {
@@ -28,7 +31,7 @@ allprojects {
     apply plugin: "maven-publish"
 
     archivesBaseName = rootProject.archives_base_name
-    version = "${rootProject.mod_version}+mc${rootProject.minecraft_version}-${project.name}"
+    version = rootProject.mod_version
     group = rootProject.maven_group
 
     repositories {
@@ -51,4 +54,34 @@ allprojects {
             // Add repositories to publish to here.
         }
     }
+}
+
+forgix {
+    group = "com.mrmelon54.DraggableLists"
+    mergedJarName = "${project.archivesBaseName}-mc${project.minecraft_version}-${project.mod_version}-${getVersionMetadata()}.jar"
+    outputDir = "build/libs/merged"
+}
+
+def getVersionMetadata() {
+    def build_id = System.getenv("GITHUB_RUN_NUMBER")
+
+    // CI builds only
+    if (build_id != null) {
+        return "build.${build_id}"
+    }
+
+    if (grgit != null) {
+        def head = grgit.head()
+        def id = head.abbreviatedId
+
+        // Flag the build if the build tree is not clean
+        if (!grgit.status().clean) {
+            id += "-dirty"
+        }
+
+        return "rev.${id}"
+    }
+
+    // No tracking information could be found about the build
+    return "unknown"
 }
