@@ -16,7 +16,7 @@
   "icon": "icon.png",
   "environment": "client",
   "entrypoints": {
-    "client": [
+    "main": [
       "com.mrmelon54.DraggableLists.fabric.DraggableListsFabric"
     ],
     "modmenu": [
