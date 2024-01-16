@@ -53,8 +53,11 @@ processResources {
     inputs.property "version", project.version
 
     filesMatching("quilt.mod.json") {
-        expand "group": rootProject.maven_group,
-                "version": project.version
+        expand "version": project.version,
+                "description": rootProject.mod_description,
+                "minecraft_version": rootProject.minecraft_version,
+                "architectury_version": rootProject.architectury_version,
+                "cloth_config_version": rootProject.cloth_config_version
     }
 }
 
@@ -62,18 +65,18 @@ shadowJar {
     exclude "architectury.common.json"
 
     configurations = [project.configurations.shadowCommon]
-    classifier "dev-shadow"
+    archiveClassifier.set "dev-shadow"
 }
 
 remapJar {
     injectAccessWidener = true
     input.set shadowJar.archiveFile
     dependsOn shadowJar
-    classifier null
+    archiveClassifier.set null
 }
 
 jar {
-    classifier "dev"
+    archiveClassifier.set "dev-shadow"
 }
 
 sourcesJar {

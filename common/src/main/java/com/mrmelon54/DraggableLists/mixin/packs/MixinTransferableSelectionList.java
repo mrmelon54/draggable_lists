@@ -35,7 +35,7 @@ public abstract class MixinTransferableSelectionList extends ObjectSelectionList
     private double draggable_lists$softScrollingOrigin = 0;
 
     public MixinTransferableSelectionList(Minecraft minecraft, int i, int j, int k, int l, int m) {
-        super(minecraft, i, j, k, l, m);
+        super(minecraft, i, j, k, l);
     }
 
     @Override
@@ -97,7 +97,7 @@ public abstract class MixinTransferableSelectionList extends ObjectSelectionList
 
     @Unique
     boolean draggable_lists$updateDragEvent(double mouseX, double mouseY) {
-        if (mouseX < x0) {
+        if (mouseX < getX()) {
             draggable_lists$draggingStartX = mouseX;
         }
         double y = draggable_lists$capYCoordinate((int) mouseY, true);
@@ -122,7 +122,7 @@ public abstract class MixinTransferableSelectionList extends ObjectSelectionList
     }
 
     @Override
-    public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float delta) {
+    public void renderWidget(GuiGraphics guiGraphics, int mouseX, int mouseY, float delta) {
         super.render(guiGraphics, mouseX, mouseY, delta);
 
         if (this.draggable_lists$draggingObject instanceof ResourcePackEntryDuckProvider duckProvider) {
@@ -157,8 +157,8 @@ public abstract class MixinTransferableSelectionList extends ObjectSelectionList
 
     @Unique
     int draggable_lists$capYCoordinate(int y, boolean useScreenSpace) {
-        int scrollableTop = y0 + (useScreenSpace ? 0 : (int) Math.max(headerHeight - getScrollAmount() + 2, 0)) + 2;
-        int scrollableHeight = y1 - y0 - (useScreenSpace ? 0 : itemHeight + (int) Math.max(headerHeight - getScrollAmount() + 2, 0));
+        int scrollableTop = getY() + (useScreenSpace ? 0 : (int) Math.max(headerHeight - getScrollAmount() + 2, 0)) + 2;
+        int scrollableHeight = getBottom() - getY() - (useScreenSpace ? 0 : itemHeight + (int) Math.max(headerHeight - getScrollAmount() + 2, 0));
         if (y < scrollableTop) y = scrollableTop;
         if (y > scrollableTop + scrollableHeight) y = scrollableTop + scrollableHeight;
         return y;
@@ -176,7 +176,7 @@ public abstract class MixinTransferableSelectionList extends ObjectSelectionList
 
     @Unique
     boolean draggable_lists$dragResourcePack(ResourcePackEntryDuckProvider underlyingPackProvider, double mouseY) {
-        int m = Mth.floor(mouseY - (double) y0) - this.headerHeight + (int) this.getScrollAmount() - 4;
+        int m = Mth.floor(mouseY - (double) getY()) - this.headerHeight + (int) this.getScrollAmount() - 4;
         int n = m / this.itemHeight;
 
         PackSelectionModel.Entry pack = underlyingPackProvider.draggable_lists$getUnderlyingPack();

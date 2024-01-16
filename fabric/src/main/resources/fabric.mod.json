@@ -3,14 +3,14 @@
   "id": "draggable_lists",
   "version": "${version}",
   "name": "Draggable Lists",
-  "description": "Draggable resource packs, datapacks and servers",
+  "description": "${description}",
   "authors": [
     "MrMelon54"
   ],
   "contact": {
     "homepage": "https://mrmelon54.com/minecraft/draggable-lists",
-    "sources": "https://github.com/MrMelon54/draggable_lists",
-    "issues": "https://github.com/MrMelon54/draggable_lists/issues"
+    "sources": "https://github.com/mrmelon54/draggable_lists",
+    "issues": "https://github.com/mrmelon54/draggable_lists/issues"
   },
   "license": "GPL-3.0-only",
   "icon": "icon.png",
@@ -29,7 +29,8 @@
   ],
   "depends": {
     "fabric": "*",
-    "minecraft": "1.20.x",
-    "architectury": ">=9.0.0"
+    "minecraft": "${minecraft_version}",
+    "architectury": ">=${architectury_version}",
+    "cloth-config": ">=${cloth_config_version}"
   }
 }

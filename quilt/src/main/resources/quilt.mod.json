@@ -5,12 +5,12 @@
     "draggable_lists-common.mixins.json"
   ],
   "quilt_loader": {
-    "group": "${group}",
+    "group": "com.mrmelon54.DraggableLists",
     "id": "draggable_lists",
     "version": "${version}",
     "metadata": {
       "name": "Draggable Lists",
-      "description": "Draggable resource packs, datapacks and servers",
+      "description": "${description}",
       "contributors": {
         "MrMelon54": "Owner"
       },
@@ -42,11 +42,15 @@
       },
       {
         "id": "minecraft",
-        "version": "1.20.x"
+        "version": "${minecraft_version}"
       },
       {
         "id": "architectury",
-        "version": ">=9.0.0"
+        "version": ">=${architectury_version}"
+      },
+      {
+        "id": "cloth-config",
+        "version": ">=${cloth_config_version"
       }
     ]
   },
