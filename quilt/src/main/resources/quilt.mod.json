@@ -50,7 +50,7 @@
       },
       {
         "id": "cloth-config",
-        "version": ">=${cloth_config_version"
+        "version": ">=${cloth_config_version}"
       }
     ]
   },
