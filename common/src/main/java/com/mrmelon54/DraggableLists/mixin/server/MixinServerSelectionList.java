@@ -173,7 +173,7 @@ public abstract class MixinServerSelectionList extends ObjectSelectionList<Serve
 
     @Unique
     int draggable_lists$capYCoordinate(int y, boolean useScreenSpace) {
-        int scrollableTop = y + 4;
+        int scrollableTop = getY() + 4;
         int scrollableHeight = getBottom() - getY() - (useScreenSpace ? 2 : itemHeight + 2);
         if (y < scrollableTop) y = scrollableTop;
         if (y > scrollableTop + scrollableHeight) y = scrollableTop + scrollableHeight;

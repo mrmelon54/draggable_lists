@@ -123,7 +123,7 @@ public abstract class MixinTransferableSelectionList extends ObjectSelectionList
 
     @Override
     public void renderWidget(GuiGraphics guiGraphics, int mouseX, int mouseY, float delta) {
-        super.render(guiGraphics, mouseX, mouseY, delta);
+        super.renderWidget(guiGraphics, mouseX, mouseY, delta);
 
         if (this.draggable_lists$draggingObject instanceof ResourcePackEntryDuckProvider duckProvider) {
             int z = Mth.floor(mouseY + draggable_lists$draggingOffsetY);
@@ -188,6 +188,7 @@ public abstract class MixinTransferableSelectionList extends ObjectSelectionList
 
     @Unique
     boolean draggable_lists$isValidForDragging(ResourcePackEntryDuckProvider resourcePackEntryDuckProvider) {
-        return !DraggableLists.shouldNotTouch(resourcePackEntryDuckProvider.draggable_lists$getUnderlyingPack()) && resourcePackEntryDuckProvider.draggable_lists$getUnderlyingPack().isSelected();
+        PackSelectionModel.Entry entry = resourcePackEntryDuckProvider.draggable_lists$getUnderlyingPack();
+        return !entry.isFixedPosition() && entry.isSelected();
     }
 }

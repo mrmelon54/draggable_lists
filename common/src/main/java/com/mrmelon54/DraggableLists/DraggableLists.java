@@ -10,7 +10,7 @@ import net.minecraft.server.packs.repository.Pack;
 import java.util.function.Supplier;
 
 public class DraggableLists {
-    public static final String MOD_ID = "draggable";
+    public static final String MOD_ID = "draggable_lists";
     private static ConfigStructure config;
 
     public static ConfigStructure getConfig() {
@@ -24,13 +24,5 @@ public class DraggableLists {
 
     public static Supplier<Screen> createConfigScreen(Screen screen) {
         return AutoConfig.getConfigScreen(ConfigStructure.class, screen);
-    }
-
-    public static boolean shouldNotTouch(Pack pack) {
-        return pack.isFixedPosition() || pack.isRequired() || pack.getId().equals("vanilla");
-    }
-
-    public static boolean shouldNotTouch(PackSelectionModel.Entry pack) {
-        return pack.isFixedPosition() || pack.isRequired() || pack.getId().equals("vanilla");
     }
 }

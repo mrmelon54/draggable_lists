@@ -29,14 +29,14 @@ public abstract class MixinPackSelectionModel_EntryBase implements AbstractPackD
 
     @Override
     public void draggable_lists$moveTo(int j) {
-        if (DraggableLists.shouldNotTouch(pack)) return;
+        if (pack.isFixedPosition()) return;
 
         List<Pack> list = getSelfList();
         list.remove(pack);
         list.add(j, pack);
 
         // get all fixed position resource packs, remove them and add them all at the end
-        Stream<Pack> packStream = list.stream().filter(DraggableLists::shouldNotTouch);
+        Stream<Pack> packStream = list.stream().filter(Pack::isFixedPosition);
         List<Pack> list1 = packStream.toList();
         list.removeAll(list1);
         list.addAll(list1);

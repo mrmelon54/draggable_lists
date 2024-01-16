@@ -2,17 +2,21 @@ plugins {
     id "com.github.johnrengelman.shadow" version "7.1.2"
 }
 
-repositories {
-    maven { url "https://maven.neoforged.net/releases" }
-}
-
 architectury {
     platformSetupLoomIde()
-    neoForge()
+    forge()
 }
 
 loom {
     accessWidenerPath = project(":common").loom.accessWidenerPath
+
+    forge {
+        convertAccessWideners = true
+        extraAccessWideners.add loom.accessWidenerPath.get().asFile.name
+
+        mixinConfig "draggable_lists-common.mixins.json"
+        mixinConfig "draggable_lists.mixins.json"
+    }
 }
 
 configurations {
@@ -20,15 +24,15 @@ configurations {
     shadowCommon // Don't use shadow from the shadow plugin since it *excludes* files.
     compileClasspath.extendsFrom common
     runtimeClasspath.extendsFrom common
-    developmentNeoForge.extendsFrom common
+    developmentForge.extendsFrom common
 }
 
 dependencies {
-    neoForge "net.neoforged:neoforge:${rootProject.forge_version}"
+    forge "net.minecraftforge:forge:${rootProject.forge_version}"
     // Remove the next line if you don't want to depend on the API
-    modApi "dev.architectury:architectury-neoforge:${rootProject.architectury_version}"
+    modApi "dev.architectury:architectury-forge:${rootProject.architectury_version}"
 
-    modApi "me.shedaniel.cloth:cloth-config-neoforge:${rootProject.cloth_config_version}"
+    modApi "me.shedaniel.cloth:cloth-config-forge:${rootProject.cloth_config_version}"
 
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
     shadowCommon(project(path: ":common", configuration: "transformProductionNeoForge")) { transitive = false }
@@ -78,7 +82,7 @@ components.java {
 
 publishing {
     publications {
-        mavenNeoForge(MavenPublication) {
+        mavenForge(MavenPublication) {
             artifactId = rootProject.archives_base_name + "-" + project.name
             from components.java
         }
