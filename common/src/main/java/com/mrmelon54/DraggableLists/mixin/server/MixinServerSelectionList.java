@@ -52,8 +52,8 @@ public abstract class MixinServerSelectionList extends ObjectSelectionList<Serve
     @Unique
     private double draggable_lists$softScrollingOrigin = 0;
 
-    public MixinServerSelectionList(Minecraft minecraftClient, int i, int j, int k, int l, int m) {
-        super(minecraftClient, i, j, k, l, m);
+    public MixinServerSelectionList(Minecraft minecraftClient, int i, int j, int k, int l) {
+        super(minecraftClient, i, j, k, l);
     }
 
     @Override
@@ -138,8 +138,8 @@ public abstract class MixinServerSelectionList extends ObjectSelectionList<Serve
     }
 
     @Override
-    public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float delta) {
-        super.render(guiGraphics, mouseX, mouseY, delta);
+    public void renderWidget(GuiGraphics guiGraphics, int mouseX, int mouseY, float delta) {
+        super.renderWidget(guiGraphics, mouseX, mouseY, delta);
 
         if (this.draggable_lists$draggingObject instanceof ServerEntryDuckProvider duckProvider) {
             int z = Mth.floor(mouseY + draggable_lists$draggingOffsetY);
@@ -173,8 +173,8 @@ public abstract class MixinServerSelectionList extends ObjectSelectionList<Serve
 
     @Unique
     int draggable_lists$capYCoordinate(int y, boolean useScreenSpace) {
-        int scrollableTop = y0 + 4;
-        int scrollableHeight = y1 - y0 - (useScreenSpace ? 2 : itemHeight + 2);
+        int scrollableTop = getY() + 4;
+        int scrollableHeight = getBottom() - getY() - (useScreenSpace ? 2 : itemHeight + 2);
         if (y < scrollableTop) y = scrollableTop;
         if (y > scrollableTop + scrollableHeight) y = scrollableTop + scrollableHeight;
         return y;
@@ -196,7 +196,7 @@ public abstract class MixinServerSelectionList extends ObjectSelectionList<Serve
             int i = multiplayerScreenDuckProvider.draggable_lists$getIndexOfServerInfo(underlyingServerProvider.draggable_lists$getUnderlyingServer());
             if (i == -1) return false;
 
-            int m = Mth.floor(mouseY - (double) this.y0) - this.headerHeight + (int) this.getScrollAmount() - 4;
+            int m = Mth.floor(mouseY - (double) this.getY()) - this.headerHeight + (int) this.getScrollAmount() - 4;
             int n = m / this.itemHeight;
 
             if (n >= 0 && n < onlineServers.size()) {

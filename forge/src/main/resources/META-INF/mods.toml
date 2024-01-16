@@ -9,7 +9,10 @@ version = "${version}"
 displayName = "Draggable Lists"
 authors = "MrMelon54"
 description = "Draggable resource packs, datapacks and servers"
-logoFile = "/icon.png"
+logoFile = "icon.png"
+
+[[mixins]]
+config = "draggable_lists.mixins.json"
 
 [[dependencies.draggable_lists]]
 modId = "forge"
@@ -21,13 +24,13 @@ side = "BOTH"
 [[dependencies.draggable_lists]]
 modId = "minecraft"
 mandatory = true
-versionRange = "[1.20,)"
+versionRange = "[1.20.4,)"
 ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.draggable_lists]]
 modId = "architectury"
 mandatory = true
-versionRange = "[9.0.0,)"
+versionRange = "[11.0.0,)"
 ordering = "AFTER"
 side = "BOTH"
