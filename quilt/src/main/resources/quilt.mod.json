@@ -5,7 +5,7 @@
     "draggable_lists-common.mixins.json"
   ],
   "quilt_loader": {
-    "group": "com.mrmelon54.DraggableLists",
+    "group": "${group}",
     "id": "draggable_lists",
     "version": "${version}",
     "metadata": {
@@ -16,8 +16,8 @@
       },
       "contact": {
         "homepage": "https://mrmelon54.com/minecraft/draggable-lists",
-        "sources": "https://github.com/MrMelon54/draggable_lists",
-        "issues": "https://github.com/MrMelon54/draggable_lists/issues"
+        "sources": "https://github.com/mrmelon54/draggable_lists",
+        "issues": "https://github.com/mrmelon54/draggable_lists/issues"
       },
       "license": "GPL-3.0-only",
       "icon": "icon.png"

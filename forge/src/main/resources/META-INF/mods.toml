@@ -1,6 +1,6 @@
 modLoader = "javafml"
 loaderVersion = "*"
-issueTrackerURL = "https://github.com/MrMelon54/draggable_lists/issues"
+issueTrackerURL = "https://github.com/mrmelon54/draggable_lists/issues"
 license = "GPL-3.0-only"
 
 [[mods]]
