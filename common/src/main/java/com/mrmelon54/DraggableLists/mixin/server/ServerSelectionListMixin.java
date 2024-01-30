@@ -22,7 +22,7 @@ import org.spongepowered.asm.mixin.Unique;
 import java.util.List;
 
 @Mixin(ServerSelectionList.class)
-public abstract class MixinServerSelectionList extends ObjectSelectionList<ServerSelectionList.Entry> {
+public abstract class ServerSelectionListMixin extends ObjectSelectionList<ServerSelectionList.Entry> {
     @Shadow
     @Final
     private JoinMultiplayerScreen screen;
@@ -52,7 +52,7 @@ public abstract class MixinServerSelectionList extends ObjectSelectionList<Serve
     @Unique
     private double draggable_lists$softScrollingOrigin = 0;
 
-    public MixinServerSelectionList(Minecraft minecraftClient, int i, int j, int k, int l, int m) {
+    public ServerSelectionListMixin(Minecraft minecraftClient, int i, int j, int k, int l, int m) {
         super(minecraftClient, i, j, k, l);
     }
 

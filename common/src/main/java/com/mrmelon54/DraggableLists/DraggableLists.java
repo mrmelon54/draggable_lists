@@ -11,15 +11,9 @@ import java.util.function.Supplier;
 
 public class DraggableLists {
     public static final String MOD_ID = "draggable_lists";
-    private static ConfigStructure config;
-
-    public static ConfigStructure getConfig() {
-        return config;
-    }
+    public static final ConfigStructure CONFIG = AutoConfig.register(ConfigStructure.class, JanksonConfigSerializer::new).get();
 
     public static void init() {
-        AutoConfig.register(ConfigStructure.class, JanksonConfigSerializer::new);
-        config = AutoConfig.getConfigHolder(ConfigStructure.class).getConfig();
     }
 
     public static Supplier<Screen> createConfigScreen(Screen screen) {

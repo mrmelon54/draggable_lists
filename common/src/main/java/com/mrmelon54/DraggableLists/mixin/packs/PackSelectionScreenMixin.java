@@ -8,14 +8,14 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
 @Mixin(PackSelectionScreen.class)
-public class MixinPackSelectionScreen extends Screen {
+public class PackSelectionScreenMixin extends Screen {
     @Shadow
     private TransferableSelectionList selectedPackList;
 
     @Shadow
     private TransferableSelectionList availablePackList;
 
-    protected MixinPackSelectionScreen(Component component) {
+    protected PackSelectionScreenMixin(Component component) {
         super(component);
     }
 

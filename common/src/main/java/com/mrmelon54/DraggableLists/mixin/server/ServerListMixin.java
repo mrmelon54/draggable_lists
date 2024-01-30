@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.Shadow;
 import java.util.List;
 
 @Mixin(ServerList.class)
-public class MixinServerList implements ServerListDuckProvider {
+public class ServerListMixin implements ServerListDuckProvider {
     @Shadow
     @Final
     private List<ServerData> serverList;

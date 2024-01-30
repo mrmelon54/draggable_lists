@@ -1,5 +1,6 @@
 package com.mrmelon54.DraggableLists.mixin.server;
 
+import com.llamalad7.mixinextras.injector.WrapWithCondition;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mrmelon54.DraggableLists.DraggableLists;
 import com.mrmelon54.DraggableLists.duck.ServerEntryDuckProvider;
@@ -14,12 +15,11 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(ServerSelectionList.OnlineServerEntry.class)
-public abstract class MixinOnlineServerEntry extends ObjectSelectionList.Entry<ServerSelectionList.Entry> implements ServerEntryDuckProvider {
+public abstract class OnlineServerEntryMixin extends ObjectSelectionList.Entry<ServerSelectionList.Entry> implements ServerEntryDuckProvider {
     @Shadow
     @Final
     private ServerData serverData;
@@ -68,28 +68,24 @@ public abstract class MixinOnlineServerEntry extends ObjectSelectionList.Entry<S
         draggable_lists$isBeingDragged = v;
     }
 
-    @Redirect(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;blitSprite(Lnet/minecraft/resources/ResourceLocation;IIII)V", ordinal = 3))
-    public void removeUpOnButton(GuiGraphics instance, ResourceLocation resourceLocation, int i, int j, int k, int l) {
-        if (DraggableLists.getConfig().disableServerArrows) return;
-        instance.blitSprite(resourceLocation, i, j, k, l);
+    @WrapWithCondition(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;blitSprite(Lnet/minecraft/resources/ResourceLocation;IIII)V", ordinal = 3))
+    public boolean removeUpOnButton(GuiGraphics instance, ResourceLocation resourceLocation, int i, int j, int k, int l) {
+        return !DraggableLists.CONFIG.disableServerArrows;
     }
 
-    @Redirect(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;blitSprite(Lnet/minecraft/resources/ResourceLocation;IIII)V", ordinal = 4))
-    public void removeUpButton(GuiGraphics instance, ResourceLocation resourceLocation, int i, int j, int k, int l) {
-        if (DraggableLists.getConfig().disableServerArrows) return;
-        instance.blitSprite(resourceLocation, i, j, k, l);
+    @WrapWithCondition(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;blitSprite(Lnet/minecraft/resources/ResourceLocation;IIII)V", ordinal = 4))
+    public boolean removeUpButton(GuiGraphics instance, ResourceLocation resourceLocation, int i, int j, int k, int l) {
+        return !DraggableLists.CONFIG.disableServerArrows;
     }
 
-    @Redirect(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;blitSprite(Lnet/minecraft/resources/ResourceLocation;IIII)V", ordinal = 5))
-    public void removeDownOnButton(GuiGraphics instance, ResourceLocation resourceLocation, int i, int j, int k, int l) {
-        if (DraggableLists.getConfig().disableServerArrows) return;
-        instance.blitSprite(resourceLocation, i, j, k, l);
+    @WrapWithCondition(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;blitSprite(Lnet/minecraft/resources/ResourceLocation;IIII)V", ordinal = 5))
+    public boolean removeDownOnButton(GuiGraphics instance, ResourceLocation resourceLocation, int i, int j, int k, int l) {
+        return !DraggableLists.CONFIG.disableServerArrows;
     }
 
-    @Redirect(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;blitSprite(Lnet/minecraft/resources/ResourceLocation;IIII)V", ordinal = 6))
-    public void removeDownButton(GuiGraphics instance, ResourceLocation resourceLocation, int i, int j, int k, int l) {
-        if (DraggableLists.getConfig().disableServerArrows) return;
-        instance.blitSprite(resourceLocation, i, j, k, l);
+    @WrapWithCondition(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;blitSprite(Lnet/minecraft/resources/ResourceLocation;IIII)V", ordinal = 6))
+    public boolean removeDownButton(GuiGraphics instance, ResourceLocation resourceLocation, int i, int j, int k, int l) {
+        return !DraggableLists.CONFIG.disableServerArrows;
     }
 
     @Inject(method = "mouseClicked", at = @At("HEAD"), cancellable = true)

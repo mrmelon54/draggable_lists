@@ -4,15 +4,15 @@
   "compatibilityLevel": "JAVA_17",
   "minVersion": "0.8",
   "client": [
-    "packs.MixinPackSelectionModel",
-    "packs.MixinPackSelectionModel_EntryBase",
-    "packs.MixinPackSelectionScreen",
-    "packs.MixinTransferableSelectionList",
-    "packs.MixinTransferableSelectionList_PackEntry",
-    "server.MixinJoinMultiplayerScreen",
-    "server.MixinOnlineServerEntry",
-    "server.MixinServerList",
-    "server.MixinServerSelectionList"
+    "packs.PackSelectionModelMixin",
+    "packs.PackSelectionModel_EntryBaseMixin",
+    "packs.PackSelectionScreenMixin",
+    "packs.TransferableSelectionListMixin",
+    "packs.TransferableSelectionList_PackEntryMixin",
+    "server.JoinMultiplayerScreenMixin",
+    "server.OnlineServerEntryMixin",
+    "server.ServerListMixin",
+    "server.ServerSelectionListMixin"
   ],
   "mixins": [
   ],

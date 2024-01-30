@@ -7,7 +7,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
 @Mixin(PackSelectionModel.class)
-public abstract class MixinPackSelectionModel implements ResourcePackOrganizerDuckProvider {
+public abstract class PackSelectionModelMixin implements ResourcePackOrganizerDuckProvider {
     @Shadow
     @Final
     Runnable onListChanged;

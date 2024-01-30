@@ -1,6 +1,5 @@
 package com.mrmelon54.DraggableLists.mixin.packs;
 
-import com.mrmelon54.DraggableLists.DraggableLists;
 import com.mrmelon54.DraggableLists.duck.AbstractPackDuckProvider;
 import com.mrmelon54.DraggableLists.duck.ResourcePackEntryDuckProvider;
 import net.fabricmc.api.EnvType;
@@ -18,7 +17,7 @@ import org.spongepowered.asm.mixin.Unique;
 
 @Mixin(TransferableSelectionList.class)
 @Environment(EnvType.CLIENT)
-public abstract class MixinTransferableSelectionList extends ObjectSelectionList<TransferableSelectionList.PackEntry> {
+public abstract class TransferableSelectionListMixin extends ObjectSelectionList<TransferableSelectionList.PackEntry> {
     @Unique
     private TransferableSelectionList.PackEntry draggable_lists$draggingObject = null;
     @Unique
@@ -34,7 +33,7 @@ public abstract class MixinTransferableSelectionList extends ObjectSelectionList
     @Unique
     private double draggable_lists$softScrollingOrigin = 0;
 
-    public MixinTransferableSelectionList(Minecraft minecraft, int i, int j, int k, int l, int m) {
+    public TransferableSelectionListMixin(Minecraft minecraft, int i, int j, int k, int l, int m) {
         super(minecraft, i, j, k, l);
     }
 

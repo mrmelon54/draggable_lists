@@ -14,14 +14,14 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(JoinMultiplayerScreen.class)
-public abstract class MixinJoinMultiplayerScreen extends Screen implements MultiplayerScreenDuckProvider {
+public abstract class JoinMultiplayerScreenMixin extends Screen implements MultiplayerScreenDuckProvider {
     @Shadow
     protected ServerSelectionList serverSelectionList;
 
     @Shadow
     public abstract ServerList getServers();
 
-    protected MixinJoinMultiplayerScreen(Component component) {
+    protected JoinMultiplayerScreenMixin(Component component) {
         super(component);
     }
 

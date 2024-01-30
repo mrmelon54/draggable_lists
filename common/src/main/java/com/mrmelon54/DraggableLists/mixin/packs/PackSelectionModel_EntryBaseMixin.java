@@ -1,6 +1,5 @@
 package com.mrmelon54.DraggableLists.mixin.packs;
 
-import com.mrmelon54.DraggableLists.DraggableLists;
 import com.mrmelon54.DraggableLists.duck.AbstractPackDuckProvider;
 import com.mrmelon54.DraggableLists.duck.ResourcePackOrganizerDuckProvider;
 import net.minecraft.client.gui.screens.packs.PackSelectionModel;
@@ -14,7 +13,7 @@ import java.util.List;
 import java.util.stream.Stream;
 
 @Mixin(PackSelectionModel.EntryBase.class)
-public abstract class MixinPackSelectionModel_EntryBase implements AbstractPackDuckProvider {
+public abstract class PackSelectionModel_EntryBaseMixin implements AbstractPackDuckProvider {
     @Shadow
     protected abstract List<Pack> getSelfList();
 
