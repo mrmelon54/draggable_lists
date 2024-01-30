@@ -1,5 +1,6 @@
 package com.mrmelon54.DraggableLists.mixin.packs;
 
+import com.mrmelon54.DraggableLists.Cursor;
 import com.mrmelon54.DraggableLists.duck.AbstractPackDuckProvider;
 import com.mrmelon54.DraggableLists.duck.ResourcePackEntryDuckProvider;
 import net.fabricmc.api.EnvType;
@@ -60,7 +61,7 @@ public abstract class TransferableSelectionListMixin extends ObjectSelectionList
             this.setFocused(draggable_lists$draggingObject);
             duckProvider.draggable_lists$setBeingDragged(true);
             draggable_lists$softScrollingTimer = 0;
-            GLFW.glfwSetCursor(minecraft.getWindow().getWindow(), GLFW.glfwCreateStandardCursor(GLFW.GLFW_VRESIZE_CURSOR));
+            Cursor.setDragging();
             super.mouseClicked(mouseX, mouseY, button);
             this.setSelected(null);
             return true;
@@ -73,7 +74,7 @@ public abstract class TransferableSelectionListMixin extends ObjectSelectionList
     public boolean mouseReleased(double mouseX, double mouseY, int button) {
         this.setDragging(false);
         if (draggable_lists$draggingObject != null) {
-            GLFW.glfwSetCursor(minecraft.getWindow().getWindow(), GLFW.glfwCreateStandardCursor(GLFW.GLFW_ARROW_CURSOR));
+            Cursor.reset();
             if (draggable_lists$draggingObject instanceof ResourcePackEntryDuckProvider duckProvider)
                 duckProvider.draggable_lists$setBeingDragged(false);
         }

@@ -1,5 +1,6 @@
 package com.mrmelon54.DraggableLists.mixin.server;
 
+import com.mrmelon54.DraggableLists.Cursor;
 import com.mrmelon54.DraggableLists.duck.MultiplayerScreenDuckProvider;
 import com.mrmelon54.DraggableLists.duck.ServerEntryDuckProvider;
 import com.mrmelon54.DraggableLists.duck.ServerListDuckProvider;
@@ -78,7 +79,7 @@ public abstract class ServerSelectionListMixin extends ObjectSelectionList<Serve
                 this.setFocused(draggable_lists$draggingObject);
                 duckProvider.draggable_lists$setBeingDragged(true);
                 draggable_lists$softScrollingTimer = 0;
-                GLFW.glfwSetCursor(minecraft.getWindow().getWindow(), GLFW.glfwCreateStandardCursor(GLFW.GLFW_VRESIZE_CURSOR));
+                Cursor.setDragging();
                 super.mouseClicked(mouseX, mouseY, button);
                 return true;
             } else {
@@ -92,7 +93,7 @@ public abstract class ServerSelectionListMixin extends ObjectSelectionList<Serve
     public boolean mouseReleased(double mouseX, double mouseY, int button) {
         this.setDragging(false);
         if (draggable_lists$draggingObject != null) {
-            GLFW.glfwSetCursor(minecraft.getWindow().getWindow(), GLFW.glfwCreateStandardCursor(GLFW.GLFW_ARROW_CURSOR));
+            Cursor.reset();
             if (draggable_lists$draggingObject instanceof ServerEntryDuckProvider duckProvider)
                 duckProvider.draggable_lists$setBeingDragged(false);
         }
