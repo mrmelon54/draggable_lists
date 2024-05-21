@@ -10,7 +10,7 @@ import net.minecraft.server.packs.repository.Pack;
 import java.util.function.Supplier;
 
 public class DraggableLists {
-    public static final String MOD_ID = "draggable";
+    public static final String MOD_ID = "draggable_lists";
     private static ConfigStructure config;
 
     public static ConfigStructure getConfig() {
