@@ -31,3 +31,9 @@ mandatory = true
 versionRange = "[${cloth_config_version},)"
 ordering = "AFTER"
 side = "BOTH"
+
+[[mixins]]
+config = "draggable_lists-common.mixins.json"
+
+[[mixins]]
+config = "draggable_lists.mixins.json"
