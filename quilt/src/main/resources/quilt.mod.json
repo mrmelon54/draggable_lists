@@ -42,7 +42,7 @@
       },
       {
         "id": "minecraft",
-        "version": "${minecraft_version}"
+        "version": ">=${minecraft_version}"
       },
       {
         "id": "architectury",
