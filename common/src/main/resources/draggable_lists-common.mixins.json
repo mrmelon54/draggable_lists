@@ -16,8 +16,6 @@
     "server.ServerListMixin",
     "server.ServerSelectionListMixin"
   ],
-  "mixins": [
-  ],
   "injectors": {
     "defaultRequire": 1
   }
