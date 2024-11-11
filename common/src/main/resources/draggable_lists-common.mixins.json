@@ -5,6 +5,7 @@
   "minVersion": "0.8",
   "client": [
     "MinecraftMixin",
+    "accessor.AbstractSelectionListAccessor",
     "packs.PackSelectionModel_EntryBaseMixin",
     "packs.PackSelectionModelMixin",
     "packs.PackSelectionScreenMixin",
