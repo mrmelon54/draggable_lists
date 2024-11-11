@@ -3,6 +3,7 @@ package com.mrmelon54.DraggableLists.mixin.packs;
 import com.mrmelon54.DraggableLists.Cursor;
 import com.mrmelon54.DraggableLists.duck.AbstractPackDuckProvider;
 import com.mrmelon54.DraggableLists.duck.ResourcePackEntryDuckProvider;
+import com.mrmelon54.DraggableLists.mixin.accessor.AbstractSelectionListAccessor;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.Util;
@@ -12,7 +13,6 @@ import net.minecraft.client.gui.components.ObjectSelectionList;
 import net.minecraft.client.gui.screens.packs.PackSelectionModel;
 import net.minecraft.client.gui.screens.packs.TransferableSelectionList;
 import net.minecraft.util.Mth;
-import org.lwjgl.glfw.GLFW;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 
@@ -40,7 +40,8 @@ public abstract class TransferableSelectionListMixin extends ObjectSelectionList
 
     @Override
     public boolean mouseClicked(double mouseX, double mouseY, int button) {
-        if (button != 0 || draggable_lists$draggingObject != null || !draggable_lists$isCapMouseY((int) mouseY)) {
+        this.updateScrollingState(mouseX, mouseY, button);
+        if (((AbstractSelectionListAccessor)this).isScrolling() || button != 0 || draggable_lists$draggingObject != null || !draggable_lists$isCapMouseY((int) mouseY)) {
             return super.mouseClicked(mouseX, mouseY, button);
         }
         draggable_lists$draggingObject = this.getEntryAtPosition(mouseX, mouseY);
