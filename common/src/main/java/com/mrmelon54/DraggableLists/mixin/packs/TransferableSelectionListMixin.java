@@ -3,7 +3,7 @@ package com.mrmelon54.DraggableLists.mixin.packs;
 import com.mrmelon54.DraggableLists.Cursor;
 import com.mrmelon54.DraggableLists.duck.AbstractPackDuckProvider;
 import com.mrmelon54.DraggableLists.duck.ResourcePackEntryDuckProvider;
-import com.mrmelon54.DraggableLists.mixin.accessor.AbstractSelectionListAccessor;
+import com.mrmelon54.DraggableLists.mixin.accessor.AbstractScrollAreaAccessor;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.Util;
@@ -40,8 +40,8 @@ public abstract class TransferableSelectionListMixin extends ObjectSelectionList
 
     @Override
     public boolean mouseClicked(double mouseX, double mouseY, int button) {
-        this.updateScrollingState(mouseX, mouseY, button);
-        if (((AbstractSelectionListAccessor)this).isScrolling() || button != 0 || draggable_lists$draggingObject != null || !draggable_lists$isCapMouseY((int) mouseY)) {
+        this.updateScrolling(mouseX, mouseY, button);
+        if (((AbstractScrollAreaAccessor)this).isScrolling() || button != 0 || draggable_lists$draggingObject != null || !draggable_lists$isCapMouseY((int) mouseY)) {
             return super.mouseClicked(mouseX, mouseY, button);
         }
         draggable_lists$draggingObject = this.getEntryAtPosition(mouseX, mouseY);
@@ -137,14 +137,14 @@ public abstract class TransferableSelectionListMixin extends ObjectSelectionList
             if (y < z) {
                 if (draggable_lists$softScrollingTimer == 0) {
                     draggable_lists$softScrollingTimer = Util.getMillis();
-                    draggable_lists$softScrollingOrigin = getScrollAmount();
+                    draggable_lists$softScrollingOrigin = scrollAmount();
                 }
                 float f = (float) (Util.getMillis() - draggable_lists$softScrollingTimer) / 5f;
                 setScrollAmount(draggable_lists$softScrollingOrigin + f);
             } else if (y > z) {
                 if (draggable_lists$softScrollingTimer == 0) {
                     draggable_lists$softScrollingTimer = Util.getMillis();
-                    draggable_lists$softScrollingOrigin = getScrollAmount();
+                    draggable_lists$softScrollingOrigin = scrollAmount();
                 }
                 float f = (float) (Util.getMillis() - draggable_lists$softScrollingTimer) / 5f;
                 setScrollAmount(draggable_lists$softScrollingOrigin - f);
@@ -158,8 +158,8 @@ public abstract class TransferableSelectionListMixin extends ObjectSelectionList
 
     @Unique
     int draggable_lists$capYCoordinate(int y, boolean useScreenSpace) {
-        int scrollableTop = getY() + (useScreenSpace ? 0 : (int) Math.max(headerHeight - getScrollAmount() + 2, 0)) + 2;
-        int scrollableHeight = getBottom() - getY() - (useScreenSpace ? 0 : itemHeight + (int) Math.max(headerHeight - getScrollAmount() + 2, 0));
+        int scrollableTop = getY() + (useScreenSpace ? 0 : (int) Math.max(headerHeight - scrollAmount() + 2, 0)) + 2;
+        int scrollableHeight = getBottom() - getY() - (useScreenSpace ? 0 : itemHeight + (int) Math.max(headerHeight - scrollAmount() + 2, 0));
         if (y < scrollableTop) y = scrollableTop;
         if (y > scrollableTop + scrollableHeight) y = scrollableTop + scrollableHeight;
         return y;
@@ -177,7 +177,7 @@ public abstract class TransferableSelectionListMixin extends ObjectSelectionList
 
     @Unique
     boolean draggable_lists$dragResourcePack(ResourcePackEntryDuckProvider underlyingPackProvider, double mouseY) {
-        int m = Mth.floor(mouseY - (double) getY()) - this.headerHeight + (int) this.getScrollAmount() - 4;
+        int m = Mth.floor(mouseY - (double) getY()) - this.headerHeight + (int) this.scrollAmount() - 4;
         int n = m / this.itemHeight;
 
         PackSelectionModel.Entry pack = underlyingPackProvider.draggable_lists$getUnderlyingPack();
