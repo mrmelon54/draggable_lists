@@ -92,7 +92,6 @@ public class DragManager<T, E extends ObjectSelectionList.Entry<?>> {
 
         for (int i = 0; i < n; i++) {
             int renderRow = otherItemIndexShift(i, draggingIndex, draggedPosition);
-            System.out.println("real: " + i + " / renderRow: " + renderRow + " / selected: " + draggingIndex);
             int rowTop = dragList.draggable_lists$getRowTop(renderRow);
             int rowBottom = dragList.draggable_lists$getRowBottom(renderRow);
             if (rowBottom >= dragList.draggable_lists$getY() && rowTop <= dragList.draggable_lists$getBottom()) {

@@ -30,12 +30,6 @@ public abstract class TransferableSelectionList_PackEntryMixin extends ObjectSel
     @Unique
     private boolean draggable_lists$isBeingDragged = false;
 
-    @Inject(method = "render", at = @At("HEAD"), cancellable = true)
-    public void render(GuiGraphics guiGraphics, int i, int j, int k, int l, int m, int n, int o, boolean bl, float f, CallbackInfo ci) {
-        if (draggable_lists$isBeingDragged)
-            ci.cancel();
-    }
-
     @WrapWithCondition(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;blitSprite(Lnet/minecraft/resources/ResourceLocation;IIII)V", ordinal = 4))
     public boolean removeOnUpArrowButtons(GuiGraphics instance, ResourceLocation resourceLocation, int i, int j, int k, int l) {
         return !DraggableLists.CONFIG.disableResourcePackArrows;
