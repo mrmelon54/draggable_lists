@@ -1,6 +1,6 @@
 package com.mrmelon54.DraggableLists.mixin.packs;
 
-import com.llamalad7.mixinextras.injector.WrapWithCondition;
+import com.llamalad7.mixinextras.injector.v2.WrapWithCondition;
 import com.mrmelon54.DraggableLists.DragItem;
 import com.mrmelon54.DraggableLists.DraggableLists;
 import net.minecraft.client.gui.GuiGraphics;
@@ -14,7 +14,6 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(TransferableSelectionList.PackEntry.class)
