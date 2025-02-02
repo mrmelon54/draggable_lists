@@ -4,8 +4,6 @@ import com.mrmelon54.DraggableLists.config.ConfigStructure;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.JanksonConfigSerializer;
 import net.minecraft.client.gui.screens.Screen;
-import net.minecraft.client.gui.screens.packs.PackSelectionModel;
-import net.minecraft.server.packs.repository.Pack;
 
 import java.util.function.Supplier;
 

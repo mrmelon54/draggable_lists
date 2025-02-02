@@ -44,8 +44,4 @@ public abstract class PackSelectionModel_EntryBaseMixin implements AbstractPackD
             duckProvider.draggable_lists$updateSelectedList();
     }
 
-    @Override
-    public int draggable_lists$getIndexInSelectedList() {
-        return getSelfList().indexOf(pack);
-    }
 }

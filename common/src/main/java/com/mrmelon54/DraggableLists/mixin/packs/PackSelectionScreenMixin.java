@@ -39,4 +39,11 @@ public class PackSelectionScreenMixin extends Screen {
         if (availablePackList.isDragging()) availablePackList.mouseReleased(d, e, i);
         return super.mouseReleased(d, e, i);
     }
+
+    @Override
+    public void onClose() {
+        if (selectedPackList.isDragging()) selectedPackList.mouseReleased(0, 0, 0);
+        if (availablePackList.isDragging()) availablePackList.mouseReleased(0, 0, 0);
+        super.onClose();
+    }
 }
