@@ -134,8 +134,7 @@ public abstract class TransferableSelectionListMixin extends ObjectSelectionList
 
     @Override
     public void draggable_lists$moveEntry(DragItem<PackSelectionModel.Entry, TransferableSelectionList.PackEntry> item, int n) {
-        TransferableSelectionList.PackEntry pack = item.draggable_lists$getUnderlyingEntry();
-        if (pack instanceof AbstractPackDuckProvider duckProvider) {
+        if (item.draggable_lists$getUnderlyingData() instanceof AbstractPackDuckProvider duckProvider) {
             duckProvider.draggable_lists$moveTo(n);
         }
     }

@@ -95,11 +95,8 @@ public class DragManager<T, E extends ObjectSelectionList.Entry<?>> {
             int rowTop = dragList.draggable_lists$getRowTop(renderRow);
             int rowBottom = dragList.draggable_lists$getRowBottom(renderRow);
             if (rowBottom >= dragList.draggable_lists$getY() && rowTop <= dragList.draggable_lists$getBottom()) {
-                if (i == draggingIndex) {
-
-                } else {
-                    int outTop = rowTop - (int) dragList.draggable_lists$getScrollAmount();
-                    dragList.draggable_lists$renderItem(guiGraphics, mouseX, mouseY, tickDelta, i, rowLeft, outTop, rowWidth, rowHeight);
+                if (i != draggingIndex) {
+                    dragList.draggable_lists$renderItem(guiGraphics, mouseX, mouseY, tickDelta, i, rowLeft, rowTop, rowWidth, rowHeight);
                 }
             }
         }
@@ -165,7 +162,7 @@ public class DragManager<T, E extends ObjectSelectionList.Entry<?>> {
     }
 
     private int getIndexFromMouseY(double mouseY) {
-        int m = Mth.floor(mouseY - (double) dragList.draggable_lists$getY()) - dragList.draggable_lists$getHeaderHeight() - (int) dragList.draggable_lists$getScrollAmount() - 4;
+        int m = Mth.floor(mouseY - (double) dragList.draggable_lists$getY()) - dragList.draggable_lists$getHeaderHeight() + (int) dragList.draggable_lists$getScrollAmount() - 4;
         return m / dragList.draggable_lists$getItemHeight();
     }
 
