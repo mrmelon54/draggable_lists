@@ -172,7 +172,7 @@ public class DragManager<T, E extends ObjectSelectionList.Entry<?>> {
 
     private boolean dragServerItem(DragItem<T, E> item, double mouseY) {
         int n = getIndexFromMouseY(mouseY);
-        dragList.draggable_lists$moveServerEntry(item, n);
+        dragList.draggable_lists$moveEntry(item, n);
         return true;
     }
 }

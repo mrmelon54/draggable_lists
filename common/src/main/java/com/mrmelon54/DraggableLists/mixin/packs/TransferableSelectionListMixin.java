@@ -133,7 +133,7 @@ public abstract class TransferableSelectionListMixin extends ObjectSelectionList
     }
 
     @Override
-    public void draggable_lists$moveServerEntry(DragItem<PackSelectionModel.Entry, TransferableSelectionList.PackEntry> item, int n) {
+    public void draggable_lists$moveEntry(DragItem<PackSelectionModel.Entry, TransferableSelectionList.PackEntry> item, int n) {
         TransferableSelectionList.PackEntry pack = item.draggable_lists$getUnderlyingEntry();
         if (pack instanceof AbstractPackDuckProvider duckProvider) {
             duckProvider.draggable_lists$moveTo(n);

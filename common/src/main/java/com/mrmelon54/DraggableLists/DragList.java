@@ -30,7 +30,7 @@ public interface DragList<T, E extends ObjectSelectionList.Entry<?>> {
 
     void draggable_lists$setScrollAmount(double v);
 
-    void draggable_lists$moveServerEntry(DragItem<T, E> item, int n);
+    void draggable_lists$moveEntry(DragItem<T, E> item, int n);
 
     int draggable_lists$getItemCount();
 

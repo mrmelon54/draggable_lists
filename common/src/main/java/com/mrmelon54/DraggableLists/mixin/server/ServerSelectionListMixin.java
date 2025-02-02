@@ -136,7 +136,7 @@ public abstract class ServerSelectionListMixin extends ObjectSelectionList<Serve
         setScrollAmount(v);
     }
 
-    public void draggable_lists$moveServerEntry(DragItem<ServerData, ServerSelectionList.OnlineServerEntry> item, int n) {
+    public void draggable_lists$moveEntry(DragItem<ServerData, ServerSelectionList.OnlineServerEntry> item, int n) {
         ServerList servers = screen.getServers();
         if (servers instanceof ServerListDuckProvider duckProvider) {
             duckProvider.draggable_lists$moveItem(item, n);
