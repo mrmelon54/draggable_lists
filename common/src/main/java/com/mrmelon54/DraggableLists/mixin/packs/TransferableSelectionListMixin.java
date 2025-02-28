@@ -12,11 +12,15 @@ import net.minecraft.client.gui.components.ObjectSelectionList;
 import net.minecraft.client.gui.screens.packs.PackSelectionModel;
 import net.minecraft.client.gui.screens.packs.TransferableSelectionList;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 
 @Mixin(TransferableSelectionList.class)
 @Environment(EnvType.CLIENT)
 public abstract class TransferableSelectionListMixin extends ObjectSelectionList<TransferableSelectionList.PackEntry> implements DragList<PackSelectionModel.Entry, TransferableSelectionList.PackEntry> {
+    @Shadow
+    protected abstract int getScrollbarPosition();
+
     @Unique
     private final DragManager<PackSelectionModel.Entry, TransferableSelectionList.PackEntry> draggable_lists$dragManager = new DragManager<>(this);
 
@@ -29,9 +33,14 @@ public abstract class TransferableSelectionListMixin extends ObjectSelectionList
         draggable_lists$dragManager.renderListItems(guiGraphics, mouseX, mouseY, tickDelta);
     }
 
+    @Unique
+    private boolean draggable_lists$isMouseOverScrollbar(double mouseX) {
+        return scrollbarVisible() && mouseX >= getScrollbarPosition();
+    }
+
     @Override
     public boolean mouseClicked(double mouseX, double mouseY, int button) {
-        if (draggable_lists$dragManager.mouseClicked(mouseX, mouseY, button)) return true;
+        if (!draggable_lists$isMouseOverScrollbar(mouseX) && draggable_lists$dragManager.mouseClicked(mouseX, mouseY, button)) return true;
         return super.mouseClicked(mouseX, mouseY, button);
     }
 
