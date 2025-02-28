@@ -52,7 +52,10 @@ public abstract class TransferableSelectionList_PackEntryMixin extends ObjectSel
     @Inject(method = "mouseClicked", at = @At("HEAD"), cancellable = true)
     public void removeMoveTowardEnd(double d, double e, int i, CallbackInfoReturnable<Boolean> cir) {
         if (!DraggableLists.CONFIG.disableResourcePackArrows) return;
-        if (d > getRectangle().width() / 2f) return;
+
+        float screenWidth = parent.getRectangle().width() / 2f;
+
+        if (d < screenWidth) return;
 
         double f = d - (double) parent.getRowLeft();
         if (f < 16 || f > 32) return;
