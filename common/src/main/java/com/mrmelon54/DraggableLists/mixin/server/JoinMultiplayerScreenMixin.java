@@ -1,11 +1,8 @@
 package com.mrmelon54.DraggableLists.mixin.server;
 
-import com.mrmelon54.DraggableLists.duck.MultiplayerScreenDuckProvider;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.multiplayer.JoinMultiplayerScreen;
 import net.minecraft.client.gui.screens.multiplayer.ServerSelectionList;
-import net.minecraft.client.multiplayer.ServerData;
-import net.minecraft.client.multiplayer.ServerList;
 import net.minecraft.network.chat.Component;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -14,12 +11,9 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(JoinMultiplayerScreen.class)
-public abstract class JoinMultiplayerScreenMixin extends Screen implements MultiplayerScreenDuckProvider {
+public abstract class JoinMultiplayerScreenMixin extends Screen {
     @Shadow
     protected ServerSelectionList serverSelectionList;
-
-    @Shadow
-    public abstract ServerList getServers();
 
     protected JoinMultiplayerScreenMixin(Component component) {
         super(component);
@@ -40,13 +34,5 @@ public abstract class JoinMultiplayerScreenMixin extends Screen implements Multi
     public void onClose() {
         if (serverSelectionList.isDragging()) serverSelectionList.mouseReleased(0, 0, 0);
         super.onClose();
-    }
-
-    @Override
-    public int draggable_lists$getIndexOfServerInfo(ServerData serverData) {
-        ServerList servers = getServers();
-        for (int i = 0; i < servers.size(); i++)
-            if (servers.get(i) == serverData) return i;
-        return -1;
     }
 }

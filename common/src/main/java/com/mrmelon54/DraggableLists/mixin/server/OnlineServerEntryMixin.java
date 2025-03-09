@@ -1,14 +1,12 @@
 package com.mrmelon54.DraggableLists.mixin.server;
 
 import com.llamalad7.mixinextras.injector.v2.WrapWithCondition;
-import com.mojang.blaze3d.systems.RenderSystem;
+import com.mrmelon54.DraggableLists.DragItem;
 import com.mrmelon54.DraggableLists.DraggableLists;
-import com.mrmelon54.DraggableLists.duck.ServerEntryDuckProvider;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.ObjectSelectionList;
 import net.minecraft.client.gui.screens.multiplayer.ServerSelectionList;
 import net.minecraft.client.multiplayer.ServerData;
-import net.minecraft.client.renderer.RenderType;
 import net.minecraft.resources.ResourceLocation;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -16,13 +14,10 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import java.util.function.Function;
-
 @Mixin(ServerSelectionList.OnlineServerEntry.class)
-public abstract class OnlineServerEntryMixin extends ObjectSelectionList.Entry<ServerSelectionList.Entry> implements ServerEntryDuckProvider {
+public abstract class OnlineServerEntryMixin extends ObjectSelectionList.Entry<ServerSelectionList.Entry> implements DragItem<ServerData, ServerSelectionList.OnlineServerEntry> {
     @Shadow
     @Final
     private ServerData serverData;
@@ -40,54 +35,23 @@ public abstract class OnlineServerEntryMixin extends ObjectSelectionList.Entry<S
     @Unique
     private boolean draggable_lists$isBeingDragged;
 
-    @Inject(method = "render", at = @At("HEAD"), cancellable = true)
-    public void render(GuiGraphics guiGraphics, int i, int j, int k, int l, int m, int n, int o, boolean bl, float f, CallbackInfo ci) {
-        if (draggable_lists$isBeingDragged) ci.cancel();
-    }
-
-    @Override
-    public ServerData draggable_lists$getUnderlyingServer() {
-        return serverData;
-    }
-
-    @Override
-    public void draggable_lists$renderPoppedOut(GuiGraphics guiGraphics, int index, int y, int x, int entryWidth, int entryHeight, int mouseX, int mouseY, boolean hovered, float tickDelta) {
-        if (!draggable_lists$isBeingDragged) return;
-
-        draggable_lists$isBeingDragged = false;
-        guiGraphics.pose().pushPose();
-
-        float z = 191f / 255f;
-        RenderSystem.setShaderColor(z, z, z, 0.5f);
-        guiGraphics.fill(x - 1, y - 1, x + entryWidth - 2, y + entryHeight + 1, 0xbfbfbfff);
-        render(guiGraphics, index, y, x, entryWidth, entryHeight, mouseX, mouseY, hovered, tickDelta);
-        RenderSystem.setShaderColor(1, 1, 1, 1);
-        guiGraphics.pose().popPose();
-        draggable_lists$isBeingDragged = true;
-    }
-
-    @Override
-    public void draggable_lists$setBeingDragged(boolean v) {
-        draggable_lists$isBeingDragged = v;
-    }
-
-    @WrapWithCondition(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;blitSprite(Ljava/util/function/Function;Lnet/minecraft/resources/ResourceLocation;IIII)V", ordinal = 3))
-    public boolean removeUpOnButton(GuiGraphics instance, Function<ResourceLocation, RenderType> function, ResourceLocation resourceLocation, int i, int j, int k, int l) {
+    @WrapWithCondition(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;blitSprite(Lnet/minecraft/resources/ResourceLocation;IIII)V", ordinal = 3))
+    public boolean removeUpOnButton(GuiGraphics instance, ResourceLocation resourceLocation, int i, int j, int k, int l) {
         return !DraggableLists.CONFIG.disableServerArrows;
     }
 
-    @WrapWithCondition(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;blitSprite(Ljava/util/function/Function;Lnet/minecraft/resources/ResourceLocation;IIII)V", ordinal = 4))
-    public boolean removeUpButton(GuiGraphics instance, Function<ResourceLocation, RenderType> function, ResourceLocation resourceLocation, int i, int j, int k, int l) {
+    @WrapWithCondition(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;blitSprite(Lnet/minecraft/resources/ResourceLocation;IIII)V", ordinal = 4))
+    public boolean removeUpButton(GuiGraphics instance, ResourceLocation resourceLocation, int i, int j, int k, int l) {
         return !DraggableLists.CONFIG.disableServerArrows;
     }
 
-    @WrapWithCondition(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;blitSprite(Ljava/util/function/Function;Lnet/minecraft/resources/ResourceLocation;IIII)V", ordinal = 5))
-    public boolean removeDownOnButton(GuiGraphics instance, Function<ResourceLocation, RenderType> function, ResourceLocation resourceLocation, int i, int j, int k, int l) {
+    @WrapWithCondition(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;blitSprite(Lnet/minecraft/resources/ResourceLocation;IIII)V", ordinal = 5))
+    public boolean removeDownOnButton(GuiGraphics instance, ResourceLocation resourceLocation, int i, int j, int k, int l) {
         return !DraggableLists.CONFIG.disableServerArrows;
     }
 
-    @WrapWithCondition(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;blitSprite(Ljava/util/function/Function;Lnet/minecraft/resources/ResourceLocation;IIII)V", ordinal = 6))
-    public boolean removeDownButton(GuiGraphics instance, Function<ResourceLocation, RenderType> function, ResourceLocation resourceLocation, int i, int j, int k, int l) {
+    @WrapWithCondition(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;blitSprite(Lnet/minecraft/resources/ResourceLocation;IIII)V", ordinal = 6))
+    public boolean removeDownButton(GuiGraphics instance, ResourceLocation resourceLocation, int i, int j, int k, int l) {
         return !DraggableLists.CONFIG.disableServerArrows;
     }
 
@@ -102,5 +66,26 @@ public abstract class OnlineServerEntryMixin extends ObjectSelectionList.Entry<S
             cir.setReturnValue(true);
             cir.cancel();
         }
+    }
+
+    @Override
+    public ServerData draggable_lists$getUnderlyingData() {
+        return serverData;
+    }
+
+    @Override
+    public ServerSelectionList.OnlineServerEntry draggable_lists$getUnderlyingEntry() {
+        return (ServerSelectionList.OnlineServerEntry) (Object) this;
+    }
+
+    @Override
+    public void draggable_lists$render(GuiGraphics guiGraphics, int index, int y, int x, int entryWidth, int entryHeight, int mouseX, int mouseY, boolean hovered, float tickDelta) {
+        if (!draggable_lists$isBeingDragged) return;
+        render(guiGraphics, index, y, x, entryWidth, entryHeight, mouseX, mouseY, hovered, tickDelta);
+    }
+
+    @Override
+    public void draggable_lists$setBeingDragged(boolean v) {
+        draggable_lists$isBeingDragged = v;
     }
 }
