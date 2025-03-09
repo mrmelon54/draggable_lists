@@ -127,7 +127,7 @@ public abstract class ServerSelectionListMixin extends ObjectSelectionList<Serve
     }
 
     public double draggable_lists$getScrollAmount() {
-        return getScrollAmount();
+        return scrollAmount();
     }
 
     public void draggable_lists$setScrollAmount(double v) {
