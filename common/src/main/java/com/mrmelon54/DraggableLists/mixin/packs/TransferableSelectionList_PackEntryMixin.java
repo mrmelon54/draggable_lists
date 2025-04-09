@@ -56,9 +56,8 @@ public abstract class TransferableSelectionList_PackEntryMixin extends ObjectSel
     public void removeMoveTowardEnd(double d, double e, int i, CallbackInfoReturnable<Boolean> cir) {
         if (!DraggableLists.CONFIG.disableResourcePackArrows) return;
 
-        float screenWidth = parent.getRectangle().width() / 2f;
-
-        if (d < screenWidth) return;
+        // Allow using the whole pack selection button
+        if (pack.canSelect()) return;
 
         double f = d - (double) parent.getRowLeft();
         if (f < 16 || f > 32) return;
