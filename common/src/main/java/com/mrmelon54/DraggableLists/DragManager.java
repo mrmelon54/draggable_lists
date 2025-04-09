@@ -21,7 +21,7 @@ public class DragManager<T, E extends ObjectSelectionList.Entry<?>> {
     }
 
     public boolean mouseClicked(double mouseX, double mouseY, int button) {
-        if (button != 0 || selectedItem != null || !isCapMouseY((int) mouseY)) return false;
+        if (selectedItem != null || !isCapMouseY((int) mouseY)) return false;
 
         selectedItem = dragList.draggable_lists$getEntryAtPosition(mouseX, mouseY);
         if (selectedItem == null) return false;

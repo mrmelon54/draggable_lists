@@ -6,6 +6,7 @@ import com.mrmelon54.DraggableLists.DragManager;
 import com.mrmelon54.DraggableLists.duck.ServerListDuckProvider;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.Util;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.ObjectSelectionList;
@@ -25,6 +26,9 @@ public abstract class ServerSelectionListMixin extends ObjectSelectionList<Serve
     @Shadow
     @Final
     private JoinMultiplayerScreen screen;
+
+    @Unique
+    long lastClickTime;
 
     @Shadow
     public abstract void setSelected(@Nullable ServerSelectionList.Entry entry);
@@ -49,6 +53,16 @@ public abstract class ServerSelectionListMixin extends ObjectSelectionList<Serve
 
     @Override
     public boolean mouseClicked(double mouseX, double mouseY, int button) {
+        // Double clicks should join the server instead of dragging
+        if (Util.getMillis() - this.lastClickTime < 250L) {
+            draggable_lists$dragManager.mouseReleased(mouseX, mouseY, button);
+            setSelected(getEntryAtPosition(mouseX, mouseY));
+            this.screen.joinSelectedServer();
+            return true;
+        }
+
+        this.lastClickTime = Util.getMillis();
+
         if (draggable_lists$dragManager.mouseClicked(mouseX, mouseY, button)) return true;
         return super.mouseClicked(mouseX, mouseY, button);
     }
