@@ -3,5 +3,7 @@
   "text.autoconfig.draggable_lists.option.disableResourcePackArrows": "Disable Resource Pack Arrows",
   "text.autoconfig.draggable_lists.option.disableDatapackArrows": "Disable Datapack Arrows",
   "text.autoconfig.draggable_lists.option.disableServerArrows": "Disable Server Arrows",
-  "text.autoconfig.draggable_lists.option.disableLevelArrows": "Disable Level Arrows"
+  "text.autoconfig.draggable_lists.option.disableLevelArrows": "Disable Level Arrows",
+  "text.autoconfig.draggable_lists.option.resourcePackDraggingEnabled": "Resource Pack Dragging",
+  "text.autoconfig.draggable_lists.option.serverDraggingEnabled": "Server Dragging"
 }
