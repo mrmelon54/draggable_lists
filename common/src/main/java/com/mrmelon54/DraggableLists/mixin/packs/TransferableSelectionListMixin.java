@@ -39,12 +39,6 @@ public abstract class TransferableSelectionListMixin extends ObjectSelectionList
     }
 
     @Override
-    public boolean mouseClicked(double mouseX, double mouseY, int button) {
-        if (!draggable_lists$isMouseOverScrollbar(mouseX) && draggable_lists$dragManager.mouseClicked(mouseX, mouseY, button)) return true;
-        return super.mouseClicked(mouseX, mouseY, button);
-    }
-
-    @Override
     public boolean mouseReleased(double mouseX, double mouseY, int button) {
         if (draggable_lists$dragManager.mouseReleased(mouseX, mouseY, button)) return true;
         return super.mouseReleased(mouseX, mouseY, button);
@@ -52,7 +46,7 @@ public abstract class TransferableSelectionListMixin extends ObjectSelectionList
 
     @Override
     public boolean mouseDragged(double mouseX, double mouseY, int button, double deltaX, double deltaY) {
-        if (draggable_lists$dragManager.mouseDragged(mouseX, mouseY, button, deltaX, deltaY)) return true;
+        if (!draggable_lists$isMouseOverScrollbar(mouseX) && draggable_lists$dragManager.mouseDragged(mouseX, mouseY, button, deltaX, deltaY)) return true;
         return super.mouseDragged(mouseX, mouseY, button, deltaX, deltaY);
     }
 
