@@ -20,10 +20,6 @@ public class DragManager<T, E extends ObjectSelectionList.Entry<?>> {
         this.dragList = dragList;
     }
 
-    public boolean mouseClicked(double mouseX, double mouseY, int button) {
-        return false;
-    }
-
     public boolean mouseReleased(double mouseX, double mouseY, int button) {
         dragList.draggable_lists$setDragging(false);
         if (selectedItem == null) return false;

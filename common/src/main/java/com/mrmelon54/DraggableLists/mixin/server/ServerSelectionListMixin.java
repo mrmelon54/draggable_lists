@@ -52,23 +52,6 @@ public abstract class ServerSelectionListMixin extends ObjectSelectionList<Serve
     }
 
     @Override
-    public boolean mouseClicked(double mouseX, double mouseY, int button) {
-        setSelected(getEntryAtPosition(mouseX, mouseY));
-
-        // Double clicks should join the server instead of dragging
-        if (Util.getMillis() - this.lastClickTime < 250L) {
-            draggable_lists$dragManager.mouseReleased(mouseX, mouseY, button);
-            this.screen.joinSelectedServer();
-            return true;
-        }
-
-        this.lastClickTime = Util.getMillis();
-
-        if (draggable_lists$dragManager.mouseClicked(mouseX, mouseY, button)) return true;
-        return super.mouseClicked(mouseX, mouseY, button);
-    }
-
-    @Override
     public boolean mouseReleased(double mouseX, double mouseY, int button) {
         if (draggable_lists$dragManager.mouseReleased(mouseX, mouseY, button)) return true;
         return super.mouseReleased(mouseX, mouseY, button);
