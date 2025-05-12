@@ -3,6 +3,7 @@ package com.mrmelon54.DraggableLists.mixin.server;
 import com.mrmelon54.DraggableLists.DragItem;
 import com.mrmelon54.DraggableLists.DragList;
 import com.mrmelon54.DraggableLists.DragManager;
+import com.mrmelon54.DraggableLists.DraggableLists;
 import com.mrmelon54.DraggableLists.duck.ServerListDuckProvider;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -52,23 +53,6 @@ public abstract class ServerSelectionListMixin extends ObjectSelectionList<Serve
     }
 
     @Override
-    public boolean mouseClicked(double mouseX, double mouseY, int button) {
-        setSelected(getEntryAtPosition(mouseX, mouseY));
-
-        // Double clicks should join the server instead of dragging
-        if (Util.getMillis() - this.lastClickTime < 250L) {
-            draggable_lists$dragManager.mouseReleased(mouseX, mouseY, button);
-            this.screen.joinSelectedServer();
-            return true;
-        }
-
-        this.lastClickTime = Util.getMillis();
-
-        if (draggable_lists$dragManager.mouseClicked(mouseX, mouseY, button)) return true;
-        return super.mouseClicked(mouseX, mouseY, button);
-    }
-
-    @Override
     public boolean mouseReleased(double mouseX, double mouseY, int button) {
         if (draggable_lists$dragManager.mouseReleased(mouseX, mouseY, button)) return true;
         return super.mouseReleased(mouseX, mouseY, button);
@@ -76,7 +60,7 @@ public abstract class ServerSelectionListMixin extends ObjectSelectionList<Serve
 
     @Override
     public boolean mouseDragged(double mouseX, double mouseY, int button, double deltaX, double deltaY) {
-        if (draggable_lists$dragManager.mouseDragged(mouseX, mouseY, button, deltaX, deltaY)) return true;
+        if (DraggableLists.CONFIG.serverDraggingEnabled.isEnabled() && draggable_lists$dragManager.mouseDragged(mouseX, mouseY, button, deltaX, deltaY)) return true;
         return super.mouseDragged(mouseX, mouseY, button, deltaX, deltaY);
     }
 

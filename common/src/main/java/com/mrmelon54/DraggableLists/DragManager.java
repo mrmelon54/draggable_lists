@@ -20,8 +20,30 @@ public class DragManager<T, E extends ObjectSelectionList.Entry<?>> {
         this.dragList = dragList;
     }
 
-    public boolean mouseClicked(double mouseX, double mouseY, int button) {
-        if (selectedItem != null || !isCapMouseY((int) mouseY)) return false;
+    public boolean mouseReleased(double mouseX, double mouseY, int button) {
+        dragList.draggable_lists$setDragging(false);
+        if (selectedItem == null) return false;
+
+        DragItem<T, E> selectedItem1 = selectedItem;
+        selectedItem = null;
+        softScrollingTimer = 0;
+
+        Cursor.reset();
+        double y = capYCoordinate((int) mouseY, true);
+        selectedItem1.draggable_lists$setBeingDragged(false);
+
+        DragItem<T, E> hoveredEntry = dragList.draggable_lists$getEntryAtPosition(mouseX, y);
+        if (hoveredEntry == null) return false;
+
+        T draggingData = selectedItem1.draggable_lists$getUnderlyingData();
+        T hoveredData = hoveredEntry.draggable_lists$getUnderlyingData();
+
+        // if the items are null, identical or a dragServerItem call fails then stop here
+        return draggingData != null && hoveredData != null && draggingData != hoveredData && dragServerItem(selectedItem1, y);
+    }
+
+    public boolean mouseDragged(double mouseX, double mouseY, int button, double deltaX, double deltaY) {
+        if (selectedItem != null || !isCapMouseY((int) mouseY)) return selectedItem != null;
 
         selectedItem = dragList.draggable_lists$getEntryAtPosition(mouseX, mouseY);
         if (selectedItem == null) return false;
@@ -49,32 +71,6 @@ public class DragManager<T, E extends ObjectSelectionList.Entry<?>> {
         softScrollingTimer = 0;
         Cursor.setDragging();
         return true;
-    }
-
-    public boolean mouseReleased(double mouseX, double mouseY, int button) {
-        dragList.draggable_lists$setDragging(false);
-        if (selectedItem == null) return false;
-
-        DragItem<T, E> selectedItem1 = selectedItem;
-        selectedItem = null;
-        softScrollingTimer = 0;
-
-        Cursor.reset();
-        double y = capYCoordinate((int) mouseY, true);
-        selectedItem1.draggable_lists$setBeingDragged(false);
-
-        DragItem<T, E> hoveredEntry = dragList.draggable_lists$getEntryAtPosition(mouseX, y);
-        if (hoveredEntry == null) return false;
-
-        T draggingData = selectedItem1.draggable_lists$getUnderlyingData();
-        T hoveredData = hoveredEntry.draggable_lists$getUnderlyingData();
-
-        // if the items are null, identical or a dragServerItem call fails then stop here
-        return draggingData != null && hoveredData != null && draggingData != hoveredData && dragServerItem(selectedItem1, y);
-    }
-
-    public boolean mouseDragged(double mouseX, double mouseY, int button, double deltaX, double deltaY) {
-        return selectedItem != null;
     }
 
     public boolean mouseScrolled(double mouseX, double mouseY, double deltaX, double deltaY) {
