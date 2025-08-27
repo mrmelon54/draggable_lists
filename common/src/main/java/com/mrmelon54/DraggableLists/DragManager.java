@@ -1,9 +1,9 @@
 package com.mrmelon54.DraggableLists;
 
-import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.Util;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.ObjectSelectionList;
+import net.minecraft.util.ARGB;
 import net.minecraft.util.Mth;
 
 public class DragManager<T, E extends ObjectSelectionList.Entry<?>> {
@@ -114,13 +114,11 @@ public class DragManager<T, E extends ObjectSelectionList.Entry<?>> {
         int entryHeight = dragList.draggable_lists$getItemHeight() - 4;
         int entryWidth = dragList.draggable_lists$getRowWidth();
 
-        guiGraphics.pose().pushPose();
+        guiGraphics.pose().pushMatrix();
         float shaderColorValue = 191f / 255f;
-        RenderSystem.setShaderColor(shaderColorValue, shaderColorValue, shaderColorValue, 0.5f);
-        guiGraphics.fill(x - 1, y - 1, x + entryWidth - 2, y + entryHeight + 1, 0xbfbfbfff);
+        guiGraphics.fill(x - 1, y - 1, x + entryWidth - 2, y + entryHeight + 1, ARGB.colorFromFloat(0.5f, shaderColorValue, shaderColorValue, shaderColorValue));
         selectedItem.draggable_lists$render(guiGraphics, 0, y, x, entryWidth, entryHeight, mouseX, mouseY, false, delta);
-        RenderSystem.setShaderColor(1, 1, 1, 1);
-        guiGraphics.pose().popPose();
+        guiGraphics.pose().popMatrix();
 
         if (y < z) {
             if (softScrollingTimer == 0) {

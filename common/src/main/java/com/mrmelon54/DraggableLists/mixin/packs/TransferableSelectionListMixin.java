@@ -4,7 +4,6 @@ import com.mrmelon54.DraggableLists.DragItem;
 import com.mrmelon54.DraggableLists.DragList;
 import com.mrmelon54.DraggableLists.DragManager;
 import com.mrmelon54.DraggableLists.DraggableLists;
-import com.mrmelon54.DraggableLists.config.ConfigStructure;
 import com.mrmelon54.DraggableLists.duck.AbstractPackDuckProvider;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;

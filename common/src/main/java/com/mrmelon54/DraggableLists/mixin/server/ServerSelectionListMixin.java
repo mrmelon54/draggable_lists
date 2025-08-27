@@ -7,7 +7,6 @@ import com.mrmelon54.DraggableLists.DraggableLists;
 import com.mrmelon54.DraggableLists.duck.ServerListDuckProvider;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.Util;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.ObjectSelectionList;
@@ -27,9 +26,6 @@ public abstract class ServerSelectionListMixin extends ObjectSelectionList<Serve
     @Shadow
     @Final
     private JoinMultiplayerScreen screen;
-
-    @Unique
-    long lastClickTime;
 
     @Shadow
     public abstract void setSelected(@Nullable ServerSelectionList.Entry entry);
