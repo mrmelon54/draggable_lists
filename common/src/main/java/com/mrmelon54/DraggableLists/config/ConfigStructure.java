@@ -10,8 +10,8 @@ public class ConfigStructure implements ConfigData {
     public boolean disableResourcePackArrows = true;
     public boolean disableServerArrows = true;
 
-    @ConfigEntry.Gui.EnumHandler(option = ConfigEntry.Gui.EnumHandler.EnumDisplayOption.BUTTON)
+    @ConfigEntry.Gui.EnumHandler(option = ConfigEntry.Gui.EnumHandler.EnumDisplayOption.DROPDOWN)
     public EnabledMode resourcePackDraggingEnabled = EnabledMode.ENABLED;
-    @ConfigEntry.Gui.EnumHandler(option = ConfigEntry.Gui.EnumHandler.EnumDisplayOption.BUTTON)
+    @ConfigEntry.Gui.EnumHandler(option = ConfigEntry.Gui.EnumHandler.EnumDisplayOption.DROPDOWN)
     public EnabledMode serverDraggingEnabled = EnabledMode.ENABLED;
 }
